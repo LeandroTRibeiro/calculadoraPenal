@@ -1,4 +1,4 @@
-# Calculadora Penal :scales:
+# Calculadora Penal &#x2696
 
 ## Descrição :page_facing_up:
 Este projeto está em desenvolvimento como parte de um trabalho acadêmico para a disciplina de "Fundamentos Matemáticos" durante minha graduação. A Calculadora Penal visa proporcionar uma ferramenta precisa e confiável para calcular dosimetrias penais, auxiliando estudantes, profissionais do direito e interessados no campo penal a compreender e aplicar as complexidades do cálculo de penas.
