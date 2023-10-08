@@ -1,11 +1,19 @@
 import { Button } from "./components/ui/button";
+import { ThemeProvider } from "./components/theme-provider";
+import { ModeToggle } from "./components/ui/mode-toggle";
 
 const App = () => {
   return (
-    <div className="w-screen h-screen flex flex-col items-center justify-center gap-2">
-      <h1 className="text-lg">Calculadora Penal</h1>
-      <Button onClick={() => alert("Lets do it!")}>Click Me</Button>
-    </div>
+    <ThemeProvider storageKey="vite-ui-theme">
+      <h1 className="">Calculadora Penal</h1>
+      <Button
+        onClick={() => alert("Lets do it!")}
+      >
+        Click Me
+      </Button>
+      <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Id culpa aspernatur autem officia quisquam a molestiae iste sint dolorum minus dolores fugit, maxime nostrum vitae porro voluptatum veniam provident itaque!</p>
+      <ModeToggle />
+    </ThemeProvider>
   );
 };
 
