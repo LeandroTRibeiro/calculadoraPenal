@@ -10,9 +10,17 @@ import {
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
+import { Switch } from "@/components/ui/switch";
 
 type BaseSentenceProps = {
     handleNextStep: () => void;
+};
+
+type JudicialCircumstancesType = {
+    [key: string]: {
+        value: boolean;
+        label: string;
+    }
 };
 
 export const BaseSentence = (props: BaseSentenceProps) => {
@@ -35,6 +43,33 @@ export const BaseSentence = (props: BaseSentenceProps) => {
     const [circumstancesWeight, setCircumstancesWeight] = useState({
         numerator: 1,
         denominator: 8
+    });
+
+    const [judicialCircumstances, setJudicialCircumstances] = useState<JudicialCircumstancesType>({
+        criminalRecord: { 
+            value: false, label: "Antecedentes" 
+        },
+        socialConduct: { 
+            value: false, label: "Conduta Social" 
+        },
+        personality: { 
+            value: false, label: "Personalidade" 
+        },
+        culpability: { 
+            value: false, label: "Culpabilidade" 
+        },
+        crimeMotive: { 
+            value: false, label: "Motivo do Crime" 
+        },
+        crimeCircumstances: { 
+            value: false, label: "Circunstâncias do Crime" 
+        },
+        crimeConsequences: { 
+            value: false, label: "Consequência do Crime" 
+        },
+        victimBehavior: { 
+            value: false, label: "Comportamento da Vítima" 
+        }
     });
 
     const handleMinSentence = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -86,6 +121,16 @@ export const BaseSentence = (props: BaseSentenceProps) => {
         }));
     };
 
+    const handleJudicialCircunstances = (key: string) => {
+        setJudicialCircumstances(prevState => ({
+            ...prevState,
+            [key]: {
+                ...prevState[key],
+                value: !prevState[key].value
+            }
+        }));
+    };
+
     return (
 
         <form className="flex flex-col gap-5" onSubmit={ e => e.preventDefault() }>
@@ -95,7 +140,7 @@ export const BaseSentence = (props: BaseSentenceProps) => {
                         <CardTitle className="text-base">Pena mínima:</CardTitle>
                     </CardHeader>
                     <CardContent>
-                        <Label htmlFor="min-sentence-year">Anos:</Label>
+                        <Label htmlFor="min-sentence-year" className="cursor-pointer">Anos:</Label>
                         <Input 
                             id="min-sentence-year"
                             name="years" 
@@ -105,7 +150,7 @@ export const BaseSentence = (props: BaseSentenceProps) => {
                             value={minSentence.years ? minSentence.years : ""}
                             onChange={e => handleMinSentence(e)}
                         />  
-                        <Label htmlFor="min-sentence-month">Meses:</Label>
+                        <Label htmlFor="min-sentence-month" className="cursor-pointer">Meses:</Label>
                         <Input 
                             id="min-sentence-month"
                             name="months" 
@@ -115,7 +160,7 @@ export const BaseSentence = (props: BaseSentenceProps) => {
                             value={minSentence.months ? minSentence.months : ""}
                             onChange={e => handleMinSentence(e)}
                         />
-                        <Label htmlFor="min-sentence-days">Dias:</Label>
+                        <Label htmlFor="min-sentence-days" className="cursor-pointer">Dias:</Label>
                         <Input 
                             id="min-sentence-days"
                             name="days" 
@@ -132,7 +177,7 @@ export const BaseSentence = (props: BaseSentenceProps) => {
                         <CardTitle className="text-base">Pena máxima:</CardTitle>
                     </CardHeader>
                     <CardContent>
-                        <Label htmlFor="max-sentence-year">Anos:</Label>
+                        <Label htmlFor="max-sentence-year" className="cursor-pointer">Anos:</Label>
                         <Input 
                             id="max-sentence-year"
                             name="years" 
@@ -142,7 +187,7 @@ export const BaseSentence = (props: BaseSentenceProps) => {
                             value={maxSentence.years ? maxSentence.years : ""}
                             onChange={e => handleMaxSentence(e)}
                         />  
-                        <Label htmlFor="max-sentence-month">Meses:</Label>
+                        <Label htmlFor="max-sentence-month" className="cursor-pointer">Meses:</Label>
                         <Input 
                             id="max-sentence-month"
                             name="months" 
@@ -152,7 +197,7 @@ export const BaseSentence = (props: BaseSentenceProps) => {
                             value={maxSentence.months ? maxSentence.months : ""}
                             onChange={e => handleMaxSentence(e)}
                         />
-                        <Label htmlFor="max-sentence-days">Dias:</Label>
+                        <Label htmlFor="max-sentence-days" className="cursor-pointer">Dias:</Label>
                         <Input 
                             id="max-sentence-days"
                             name="days" 
@@ -178,20 +223,20 @@ export const BaseSentence = (props: BaseSentenceProps) => {
                         <div className="flex items-center space-x-2">
                             <RadioGroupItem value="option-one" id="option-one"
                             />
-                            <Label htmlFor="option-one">Calcular a partir da pena mínima.</Label>
+                            <Label htmlFor="option-one" className="cursor-pointer">Calcular a partir da pena mínima.</Label>
                         </div>
                         <div className="flex items-center space-x-2">
                             <RadioGroupItem value="option-two" id="option-two"
                             />
-                            <Label htmlFor="option-two">Calcular a partir do intervalo entre a pena mínima e a máxima.</Label>
+                            <Label htmlFor="option-two" className="cursor-pointer">Calcular a partir do intervalo entre a pena mínima e a máxima.</Label>
                         </div>
                         <div className="flex items-center space-x-2">
                             <RadioGroupItem value="option-three" id="option-three" />
-                            <Label htmlFor="option-three">Calcular a partir do intervalo entre a pena mínima e a média entre elas.</Label>
+                            <Label htmlFor="option-three" className="cursor-pointer">Calcular a partir do intervalo entre a pena mínima e a média entre elas.</Label>
                         </div>
                         <div className="flex items-center space-x-2">
                             <RadioGroupItem value="option-four" id="option-four" />
-                            <Label htmlFor="option-four">Calcular todos os tipos.</Label>
+                            <Label htmlFor="option-four" className="cursor-pointer">Calcular todos os tipos.</Label>
                         </div>
                     </RadioGroup>
                 </CardContent>
@@ -207,20 +252,20 @@ export const BaseSentence = (props: BaseSentenceProps) => {
                     >
                         <div className="flex items-center space-x-2">
                             <RadioGroupItem value="weight-one" id="weight-one" />
-                            <Label htmlFor="weight-one">Peso 1/8</Label>
+                            <Label htmlFor="weight-one" className="cursor-pointer">Peso 1/8</Label>
                         </div>
                         <div className="flex items-center space-x-2">
                             <RadioGroupItem value="weight-two" id="weight-two" />
-                            <Label htmlFor="weight-two">Peso 1/6</Label>
+                            <Label htmlFor="weight-two" className="cursor-pointer">Peso 1/6</Label>
                         </div>
                         <div className="flex items-center space-x-2">
                             <RadioGroupItem value="weight-three" id="weight-three" />
-                            <Label htmlFor="weight-three">Peso Personalizado</Label>
+                            <Label htmlFor="weight-three" className="cursor-pointer">Peso Personalizado</Label>
                         </div>
                     </RadioGroup>
                     {editCircumstanceWeight &&
                         <>
-                            <Label htmlFor="numerator">Numerador:</Label>
+                            <Label htmlFor="numerator" className="cursor-pointer">Numerador:</Label>
                             <Input 
                                 id="numerator"
                                 name="numerator"
@@ -232,7 +277,7 @@ export const BaseSentence = (props: BaseSentenceProps) => {
                                 min={1}
                                 required
                             />
-                            <Label htmlFor="denominator">Denominador:</Label>
+                            <Label htmlFor="denominator" className="cursor-pointer">Denominador:</Label>
                             <Input 
                                 id="denominator" 
                                 name="denominator"
@@ -248,7 +293,23 @@ export const BaseSentence = (props: BaseSentenceProps) => {
                     }
                 </CardContent>
             </Card>
-
+            <Card>
+                <CardHeader>
+                    <CardTitle className="text-base">Circunstâncias Judiciais</CardTitle>
+                </CardHeader>
+                <CardContent className="grid grid-cols-2 gap-5">
+                    {Object.entries(judicialCircumstances).map(([key, circumstances]) => (
+                        <Label key={key} className="flex items-center gap-5 cursor-pointer">
+                            <Switch
+                                name={key}
+                                checked={circumstances.value} 
+                                onClick={() => handleJudicialCircunstances(key)}
+                            />
+                            {circumstances.label}
+                        </Label>
+                    ))}
+                </CardContent>
+            </Card>
             <Button type="button" onClick={props.handleNextStep}>Proxima Fase</Button>
         </form>
     );
