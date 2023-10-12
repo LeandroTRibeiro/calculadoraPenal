@@ -69,4 +69,30 @@
   input[type="number"] {
     -moz-appearance: textfield;
   }
+
+  /* Estilização da barra de rolagem para o modo light */
+  ::-webkit-scrollbar {
+    width: 10px; /* Largura da barra de rolagem */
+  }
+
+  ::-webkit-scrollbar-track {
+    background-color: hsl(var(--background)); /* Cor de fundo do track */
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: hsl(var(--muted-foreground)); /* Cor do thumb da barra de rolagem */
+    border-radius: 5px; /* Arredondamento dos cantos do thumb */
+  }
+
+  /* Estilização da barra de rolagem para o modo dark quando a classe .dark estiver ativa */
+  .dark ::-webkit-scrollbar-track {
+    background-color: hsl(var(--background));
+  }
+
+  .dark ::-webkit-scrollbar-thumb {
+    background-color: hsl(var(--accent));
+  }
+
 }
+
+

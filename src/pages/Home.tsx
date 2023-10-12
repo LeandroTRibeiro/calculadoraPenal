@@ -1,7 +1,7 @@
-import { NavigationMenuHeader } from "@/components/navigation-menu-header";
+import { NavigationMenuHeader } from "@/components/NavigationMenuHeader";
 import { Button } from "@/components/ui/button";
 import dashboardImage from "/light-theme.png";
-import { Footer } from "@/components/footer";
+import { Footer } from "@/components/Footer";
 import { Link } from "react-router-dom";
 
 export const Home = () => {
