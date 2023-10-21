@@ -244,6 +244,7 @@ export const BaseSentence = (props: BaseSentenceProps) => {
             <Card>
                 <CardHeader>
                     <CardTitle className="text-base">Peso das Circunstâncias Judiciais</CardTitle>
+                    <CardDescription>O "peso das circunstâncias judiciais" refere-se à influência que elas possuem ao ampliar ou reduzir a pena base. No entanto, não há uma convenção uniforme sobre o peso exato atribuído a elas, podendo variar de um tribunal para outro.</CardDescription>
                 </CardHeader>
                 <CardContent>
                     <RadioGroup 
@@ -296,6 +297,7 @@ export const BaseSentence = (props: BaseSentenceProps) => {
             <Card>
                 <CardHeader>
                     <CardTitle className="text-base">Circunstâncias Judiciais</CardTitle>
+                    <CardDescription>As circunstâncias judiciais são elementos considerados pelos juízes no momento de definir a pena de um condenado em um processo penal. Elas são previstas na legislação penal e têm o objetivo de garantir que a pena seja individualizada, ou seja, adequada à gravidade do crime e às características pessoais do condenado.</CardDescription>
                 </CardHeader>
                 <CardContent className="grid grid-cols-2 gap-5">
                     {Object.entries(judicialCircumstances).map(([key, circumstances]) => (
