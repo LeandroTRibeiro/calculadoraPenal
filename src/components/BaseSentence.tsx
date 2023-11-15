@@ -132,7 +132,6 @@ export const BaseSentence = (props: BaseSentenceProps) => {
     };
 
     return (
-
         <form className="flex flex-col gap-5" onSubmit={ e => e.preventDefault() }>
             <div className="flex gap-2">
                 <Card className="flex-1">
@@ -296,7 +295,7 @@ export const BaseSentence = (props: BaseSentenceProps) => {
             </Card>
             <Card>
                 <CardHeader>
-                    <CardTitle className="text-base">Circunstâncias Judiciais</CardTitle>
+                    <CardTitle className="text-base">Circunstâncias Judiciais Desfavoráveis</CardTitle>
                     <CardDescription>As circunstâncias judiciais são elementos considerados pelos juízes no momento de definir a pena de um condenado em um processo penal. Elas são previstas na legislação penal e têm o objetivo de garantir que a pena seja individualizada, ou seja, adequada à gravidade do crime e às características pessoais do condenado.</CardDescription>
                 </CardHeader>
                 <CardContent className="grid grid-cols-2 gap-5">

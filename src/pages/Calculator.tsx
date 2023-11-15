@@ -11,11 +11,12 @@ import {
   } from "@/components/ui/card";
 import { BaseSentence } from "@/components/BaseSentence";
 import { IntermediateSentence } from "@/components/IntermediateSentence";
+import { DefinitiveSentence } from "@/components/DefinitiveSentence";
 
 const tabs = [
     {value: "first-step", label: "Pena Base"},
     {value: "second-step", label: "Pena Intermediaria (Provisória)"},
-    {value: "third-step", label: "3ª Fase"}
+    {value: "third-step", label: "Pena Definitiva"}
 ];
 
 export const Calculator = () => {
@@ -47,7 +48,7 @@ export const Calculator = () => {
                             <div className="flex">
                                 <CardHeader className="flex-1">
                                     <CardTitle className="text-primary">Pena Base</CardTitle>
-                                    <CardDescription>Inicialmente, é necessário identificar quais são as penas mínima e máxima previstas no código penal para o crime em questão, não se esqueça de verificar se existem circunstâncias qualificadoras que alterem esses limites mínimos e máximos.</CardDescription>
+                                    <CardDescription>Primeiramente, identifique as penas mínima e máxima estipuladas no Código Penal para o crime específico. Lembre-se de verificar a presença de circunstâncias qualificadoras que possam modificar esses limites estabelecidos.</CardDescription>
                                 </CardHeader>
                             </div>
                             <CardContent>
@@ -59,7 +60,7 @@ export const Calculator = () => {
                         <Card>
                             <CardHeader>
                                 <CardTitle className="text-primary">Pena Intermediaria (Provisória)</CardTitle>
-                                <CardDescription>Nesta etapa, a pena-base, estabelecida na primeira fase, será aumentada ou diminuída conforme as circunstâncias atenuantes e agravantes presentes no caso concreto.</CardDescription>
+                                <CardDescription>Nesta fase, a pena-base definida inicialmente é ajustada com base nas circunstâncias atenuantes e agravantes identificadas no contexto do delito cometido.</CardDescription>
                             </CardHeader>
                             <CardContent>
                                 <IntermediateSentence handleNextStep={handleNextStep} />
@@ -67,7 +68,15 @@ export const Calculator = () => {
                         </Card>
                     </TabsContent>
                     <TabsContent value="third-step">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Non, molestiae aspernatur omnis quis voluptates, nulla accusantium maxime eveniet quia eius fugiat. Quibusdam perspiciatis iure dolor reiciendis libero facilis voluptatum suscipit.
+                        <Card>
+                            <CardHeader>
+                                <CardTitle className="text-primary">Pena Definitiva</CardTitle>
+                                <CardDescription>Nesta etapa, a pena provisória, definida na segunda fase, é ajustada considerando as causas de aumento e diminuição previstas na legislação, resultando na pena final a ser aplicada ao réu.</CardDescription>
+                            </CardHeader>
+                            <CardContent>
+                                <DefinitiveSentence />
+                            </CardContent>
+                        </Card>
                     </TabsContent>
                 </Tabs>
             </main>
