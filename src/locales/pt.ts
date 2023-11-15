@@ -19,8 +19,8 @@ export const baseSentenceLabels = {
     },
     circumstancesWeight: {
         label: "Peso das Circunstâncias Judiciais",
-        numerator: "numerador",
-        denominator: "denominador"
+        numerator: "Numerador",
+        denominator: "Denominador"
     },
     defaultWeights: {
         weightOne: "Peso 1/8",

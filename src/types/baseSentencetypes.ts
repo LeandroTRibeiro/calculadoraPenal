@@ -39,3 +39,7 @@
 export type SentenceFieldsType = "years" | "months" | "days";
 
 export type CalculationTypesType = "minimum" | "range" | "average";
+
+export type CircumstancesOptionsWeightType = "weightOne" | "weightTwo" | "weightThree";
+
+export type CircumstancesFractionType = "numerator" | "denominator";

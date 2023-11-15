@@ -1,4 +1,4 @@
-import { CalculationTypesType, SentenceFieldsType } from "@/types/baseSentencetypes";
+import { CalculationTypesType, CircumstancesOptionsWeightType, SentenceFieldsType } from "@/types/baseSentencetypes";
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 export const slice = createSlice({
@@ -53,9 +53,40 @@ export const slice = createSlice({
         },
         updateCalculationType: (state, action: PayloadAction<CalculationTypesType>) => {
             state.calculationType = action.payload;
+        },
+        setOptionCircumstancesWeight: (state, action: PayloadAction<CircumstancesOptionsWeightType>) => {
+            switch(action.payload) {
+                case "weightOne":
+                    state.defaultWeights.weightThree = false;
+                    state.circumstancesWeight.name = action.payload;
+                    state.circumstancesWeight.numerator = 1;
+                    state.circumstancesWeight.denominator = 8;
+                    break;
+                case "weightTwo":
+                    state.defaultWeights.weightThree = false;
+                    state.circumstancesWeight.name = action.payload;
+                    state.circumstancesWeight.numerator = 1;
+                    state.circumstancesWeight.denominator = 6;
+                    break;
+                case "weightThree":
+                    state.defaultWeights.weightThree = true;
+                    state.circumstancesWeight.name = action.payload;
+                    state.circumstancesWeight.numerator = 0;
+                    state.circumstancesWeight.denominator = 0;
+                    break;
+            };
+        },
+        updateCircumstancesWeight: (state, action) => {
+
         }
     }
 });
 
-export const { updateMinSentence, updateMaxSentence, updateCalculationType } = slice.actions;
+export const { 
+    updateMinSentence, 
+    updateMaxSentence, 
+    updateCalculationType, 
+    setOptionCircumstancesWeight, 
+} = slice.actions;
+
 export default slice.reducer;

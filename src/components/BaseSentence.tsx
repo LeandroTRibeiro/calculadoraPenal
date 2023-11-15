@@ -13,8 +13,8 @@ import { useState } from "react";
 import { Switch } from "@/components/ui/switch";
 import { useAppSelector } from "@/hooks/useAppSelector";
 import { useDispatch } from "react-redux";
-import { CalculationTypesType, SentenceFieldsType } from "@/types/baseSentencetypes";
-import { updateCalculationType, updateMaxSentence, updateMinSentence } from "@/redux/reducers/baseSentenceReducer";
+import { CalculationTypesType, CircumstancesFractionType, CircumstancesOptionsWeightType, SentenceFieldsType } from "@/types/baseSentencetypes";
+import { updateCalculationType, setOptionCircumstancesWeight, updateMaxSentence, updateMinSentence } from "@/redux/reducers/baseSentenceReducer";
 import { baseSentenceLabels } from "@/locales/pt";
 
 type BaseSentenceProps = {
@@ -85,34 +85,6 @@ export const BaseSentence = (props: BaseSentenceProps) => {
         const field = e.target.name as SentenceFieldsType;
         const value = +e.target.value;
         dispatch(updateMaxSentence({field, value}));
-    };
-
-    const handleCircustancesWeight = (weight: string) => {
-
-        switch(weight) {
-            case "weight-one":
-                setEditCircumstanceWeight(false);
-                setCircumstancesWeight({
-                    numerator: 1,
-                    denominator: 8
-                });
-                break;
-            case "weight-two":
-                setEditCircumstanceWeight(false);
-                setCircumstancesWeight({
-                    numerator: 1,
-                    denominator: 6
-                });
-                break;
-            case "weight-three":
-                setEditCircumstanceWeight(true);
-                setCircumstancesWeight({
-                    numerator: 0,
-                    denominator: 0
-                });
-                break;
-        };
-
     };
 
     const handleEditCircumstancesWeight = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -198,7 +170,7 @@ export const BaseSentence = (props: BaseSentenceProps) => {
                 <CardContent>
                     <RadioGroup 
                         value={baseSentenceReducer.calculationType} 
-                        onValueChange={s => dispatch(updateCalculationType(s as CalculationTypesType))}
+                        onValueChange={type => dispatch(updateCalculationType(type as CalculationTypesType))}
                     >
                         {Object.entries(baseSentenceLabels.calculationTypes).map(([key, value]) => {
                             if(key !== "label") {
@@ -223,7 +195,7 @@ export const BaseSentence = (props: BaseSentenceProps) => {
                 <CardContent>
                     <RadioGroup 
                         defaultValue={baseSentenceReducer.circumstancesWeight.name} 
-                        onValueChange={(weight) => handleCircustancesWeight(weight)}
+                        onValueChange={(weight) => dispatch(setOptionCircumstancesWeight(weight as CircumstancesOptionsWeightType))}
                     >
                         {Object.entries(baseSentenceLabels.defaultWeights).map(([key, value]) => {
                             if(key !== "label") {
@@ -237,33 +209,29 @@ export const BaseSentence = (props: BaseSentenceProps) => {
                             return null;
                         })}
                     </RadioGroup>
-                    {editCircumstanceWeight &&
-                        <>
-                            <Label htmlFor="numerator" className="cursor-pointer">Numerador:</Label>
-                            <Input 
-                                id="numerator"
-                                name="numerator"
-                                type="number" 
-                                className="" 
-                                placeholder="Digite o valor do numerador"
-                                value={circumstancesWeight.numerator ? circumstancesWeight.numerator : ""}
-                                onChange={handleEditCircumstancesWeight}
-                                min={1}
-                                required
-                            />
-                            <Label htmlFor="denominator" className="cursor-pointer">Denominador:</Label>
-                            <Input 
-                                id="denominator" 
-                                name="denominator"
-                                type="number" 
-                                className="" 
-                                placeholder="Digite o valor do denominador"
-                                value={circumstancesWeight.denominator ? circumstancesWeight.denominator : ""}
-                                onChange={handleEditCircumstancesWeight}
-                                min={1}
-                                required
-                            />   
-                        </>
+                    {baseSentenceReducer.defaultWeights.weightThree &&
+                        Object.entries(baseSentenceLabels.circumstancesWeight).map(([key, value]) => {
+                            if(key !== "label") {
+                                const circumstanceKey = key as CircumstancesFractionType;
+                                return (
+                                    <div key={key}>
+                                        <Label htmlFor={key} className="cursor-pointer">{value}</Label>
+                                        <Input 
+                                            id={key}
+                                            name={key}
+                                            type="number" 
+                                            className="" 
+                                            placeholder={`Digite o valor do ${value}`}
+                                            value={baseSentenceReducer.circumstancesWeight[circumstanceKey] ? baseSentenceReducer.circumstancesWeight[circumstanceKey] : ""}
+                                            onChange={handleEditCircumstancesWeight}
+                                            min={1}
+                                            required
+                                        />
+                                    </div>  
+                                );
+                            }
+                        })
+
                     }
                 </CardContent>
             </Card>
