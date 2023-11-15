@@ -23,7 +23,9 @@ export const Calculator = () => {
 
     const [step, setStep] = useState(tabs[0].value);
 
-    const handleNextStep = () => setStep(tabs[1].value);
+    const handleNextStep = (index: number) => {
+        setStep(tabs[index].value);
+    };
 
     const handleTabClick = (nextStep: string) => setStep(nextStep);
 
@@ -52,7 +54,7 @@ export const Calculator = () => {
                                 </CardHeader>
                             </div>
                             <CardContent>
-                                <BaseSentence handleNextStep={handleNextStep} />
+                                <BaseSentence handleNextStep={() => handleNextStep(1)} />
                             </CardContent>
                         </Card>
                     </TabsContent>
@@ -63,7 +65,7 @@ export const Calculator = () => {
                                 <CardDescription>Nesta fase, a pena-base definida inicialmente é ajustada com base nas circunstâncias atenuantes e agravantes identificadas no contexto do delito cometido.</CardDescription>
                             </CardHeader>
                             <CardContent>
-                                <IntermediateSentence handleNextStep={handleNextStep} />
+                                <IntermediateSentence handleNextStep={() => handleNextStep(2)} />
                             </CardContent>
                         </Card>
                     </TabsContent>

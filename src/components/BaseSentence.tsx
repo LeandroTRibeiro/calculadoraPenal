@@ -11,6 +11,11 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { Switch } from "@/components/ui/switch";
+import { useAppSelector } from "@/hooks/useAppSelector";
+import { useDispatch } from "react-redux";
+import { CalculationTypesType, SentenceFieldsType } from "@/types/baseSentencetypes";
+import { updateCalculationType, updateMaxSentence, updateMinSentence } from "@/redux/reducers/baseSentenceReducer";
+import { baseSentenceLabels } from "@/locales/pt";
 
 type BaseSentenceProps = {
     handleNextStep: () => void;
@@ -23,21 +28,17 @@ type JudicialCircumstancesType = {
     }
 };
 
+const weightMappings = {
+    weightOne: { numerator: 1, denominator: 8 },
+    weightTwo: { numerator: 1, denominator: 6 },
+};
+
 export const BaseSentence = (props: BaseSentenceProps) => {
 
-    const [minSentence, setMinSentence] = useState({
-        years: 0,
-        months: 0,
-        days: 0
-    });
-    const [maxSentence, setMaxSentence] = useState({
-        years: 0,
-        months: 0,
-        days: 0
-    });
-    
-    const [optionSelectedCalc, setOptionSelectedCalc] = useState("option-one");
+    const dispatch = useDispatch();
 
+    const baseSentenceReducer = useAppSelector( state => state.baseSentenceReducer );
+    
     const [editCircumstanceWeight, setEditCircumstanceWeight] = useState(false);
 
     const [circumstancesWeight, setCircumstancesWeight] = useState({
@@ -73,17 +74,17 @@ export const BaseSentence = (props: BaseSentenceProps) => {
     });
 
     const handleMinSentence = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setMinSentence(prevState => ({
-            ...prevState,
-            [e.target.name]: e.target.value
-        }));
+
+        const field = e.target.name as SentenceFieldsType;
+        const value = +e.target.value;
+        dispatch(updateMinSentence({field, value}));
     };
 
     const handleMaxSentence = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setMaxSentence(prevState => ({
-            ...prevState,
-            [e.target.name]: e.target.value
-        }));
+
+        const field = e.target.name as SentenceFieldsType;
+        const value = +e.target.value;
+        dispatch(updateMaxSentence({field, value}));
     };
 
     const handleCircustancesWeight = (weight: string) => {
@@ -136,132 +137,105 @@ export const BaseSentence = (props: BaseSentenceProps) => {
             <div className="flex gap-2">
                 <Card className="flex-1">
                     <CardHeader>
-                        <CardTitle className="text-base">Pena mínima:</CardTitle>
+                        <CardTitle className="text-base">{baseSentenceLabels.minSentence.label}</CardTitle>
                     </CardHeader>
                     <CardContent>
-                        <Label htmlFor="min-sentence-year" className="cursor-pointer">Anos:</Label>
-                        <Input 
-                            id="min-sentence-year"
-                            name="years" 
-                            type="number" 
-                            className="" 
-                            placeholder="Digite os anos da pena mínima"
-                            value={minSentence.years ? minSentence.years : ""}
-                            onChange={e => handleMinSentence(e)}
-                        />  
-                        <Label htmlFor="min-sentence-month" className="cursor-pointer">Meses:</Label>
-                        <Input 
-                            id="min-sentence-month"
-                            name="months" 
-                            type="number" 
-                            className="" 
-                            placeholder="Digite os meses da pena mínima"
-                            value={minSentence.months ? minSentence.months : ""}
-                            onChange={e => handleMinSentence(e)}
-                        />
-                        <Label htmlFor="min-sentence-days" className="cursor-pointer">Dias:</Label>
-                        <Input 
-                            id="min-sentence-days"
-                            name="days" 
-                            type="number" 
-                            className="" 
-                            placeholder="Digite os dias da pena mínima"
-                            value={minSentence.days ? minSentence.days : ""}
-                            onChange={e => handleMinSentence(e)}
-                        />     
+                        {Object.entries(baseSentenceLabels.minSentence).map(([key, value]) => {
+                            if(key !== "label") {
+                                const sentenceKey = key as SentenceFieldsType;
+                                return (
+                                    <Label key={key} className="cursor-pointer">
+                                        {value}
+                                        <Input 
+                                            id={key}
+                                            name={key} 
+                                            type="number" 
+                                            className="" 
+                                            placeholder={`Digite os ${value} da ${baseSentenceLabels.minSentence.label}`}
+                                            value={baseSentenceReducer.minSentence[sentenceKey] ? baseSentenceReducer.minSentence[sentenceKey] : ""}
+                                            onChange={e => handleMinSentence(e)}
+                                        /> 
+                                    </Label>
+                                );
+                            }
+                            return null;
+                        })}
                     </CardContent>
                 </Card>
                 <Card className="flex-1">
                     <CardHeader>
-                        <CardTitle className="text-base">Pena máxima:</CardTitle>
+                        <CardTitle className="text-base">{baseSentenceLabels.maxSentence.label}</CardTitle>
                     </CardHeader>
                     <CardContent>
-                        <Label htmlFor="max-sentence-year" className="cursor-pointer">Anos:</Label>
-                        <Input 
-                            id="max-sentence-year"
-                            name="years" 
-                            type="number" 
-                            className="" 
-                            placeholder="Digite os anos da pena máxima"
-                            value={maxSentence.years ? maxSentence.years : ""}
-                            onChange={e => handleMaxSentence(e)}
-                        />  
-                        <Label htmlFor="max-sentence-month" className="cursor-pointer">Meses:</Label>
-                        <Input 
-                            id="max-sentence-month"
-                            name="months" 
-                            type="number" 
-                            className="" 
-                            placeholder="Digite os meses da pena máxima"
-                            value={maxSentence.months ? maxSentence.months : ""}
-                            onChange={e => handleMaxSentence(e)}
-                        />
-                        <Label htmlFor="max-sentence-days" className="cursor-pointer">Dias:</Label>
-                        <Input 
-                            id="max-sentence-days"
-                            name="days" 
-                            type="number" 
-                            className="" 
-                            placeholder="Digite os dias da pena máxima"
-                            value={maxSentence.days ? maxSentence.days : ""}
-                            onChange={e => handleMaxSentence(e)}
-                        />     
+                        {Object.entries(baseSentenceLabels.maxSentence).map(([key, value]) => {
+                                if(key !== "label") {
+                                    const sentenceKey = key as SentenceFieldsType;
+                                    return (
+                                        <Label key={key} className="cursor-pointer">
+                                            {value}
+                                            <Input 
+                                                id={key}
+                                                name={key} 
+                                                type="number" 
+                                                className="" 
+                                                placeholder={`Digite os ${value} da ${baseSentenceLabels.maxSentence.label}`}
+                                                value={baseSentenceReducer.maxSentence[sentenceKey] ? baseSentenceReducer.maxSentence[sentenceKey] : ""}
+                                                onChange={e => handleMaxSentence(e)}
+                                            /> 
+                                        </Label>
+                                    );
+                                }
+                                return null;
+                        })}
                     </CardContent>
                 </Card>
             </div>
             <Card>
                 <CardHeader>
-                    <CardTitle className="text-base">Escolha o tipo de calculo</CardTitle>
+                    <CardTitle className="text-base">{baseSentenceLabels.calculationTypes.label}</CardTitle>
                     <CardDescription>Alguns tribunais tendem a calcular a pena base usando a pena mínima, enquanto outros utilizam o intervalo entre a pena mínima e máxima. Há também aqueles que consideram o intervalo entre a pena mínima e a média entre elas. Essa abordagem pode variar de acordo com cada tribunal.</CardDescription>
                 </CardHeader>
                 <CardContent>
                     <RadioGroup 
-                        value={optionSelectedCalc} 
-                        onValueChange={s => setOptionSelectedCalc(s)}
+                        value={baseSentenceReducer.calculationType} 
+                        onValueChange={s => dispatch(updateCalculationType(s as CalculationTypesType))}
                     >
-                        <div className="flex items-center space-x-2">
-                            <RadioGroupItem value="option-one" id="option-one"
-                            />
-                            <Label htmlFor="option-one" className="cursor-pointer">Calcular a partir da pena mínima.</Label>
-                        </div>
-                        <div className="flex items-center space-x-2">
-                            <RadioGroupItem value="option-two" id="option-two"
-                            />
-                            <Label htmlFor="option-two" className="cursor-pointer">Calcular a partir do intervalo entre a pena mínima e a máxima.</Label>
-                        </div>
-                        <div className="flex items-center space-x-2">
-                            <RadioGroupItem value="option-three" id="option-three" />
-                            <Label htmlFor="option-three" className="cursor-pointer">Calcular a partir do intervalo entre a pena mínima e a média entre elas.</Label>
-                        </div>
-                        <div className="flex items-center space-x-2">
-                            <RadioGroupItem value="option-four" id="option-four" />
-                            <Label htmlFor="option-four" className="cursor-pointer">Calcular todos os tipos.</Label>
-                        </div>
+                        {Object.entries(baseSentenceLabels.calculationTypes).map(([key, value]) => {
+                            if(key !== "label") {
+                                return (
+                                    <div key={key} className="flex items-center space-x-2">
+                                        <RadioGroupItem value={key} id={key}
+                                        />
+                                        <Label htmlFor={key} className="cursor-pointer">{value}</Label>
+                                    </div>
+                                );
+                            }
+                            return null;
+                        })}
                     </RadioGroup>
                 </CardContent>
             </Card>
             <Card>
                 <CardHeader>
-                    <CardTitle className="text-base">Peso das Circunstâncias Judiciais</CardTitle>
+                    <CardTitle className="text-base">{baseSentenceLabels.circumstancesWeight.label}</CardTitle>
                     <CardDescription>O "peso das circunstâncias judiciais" refere-se à influência que elas possuem ao ampliar ou reduzir a pena base. No entanto, não há uma convenção uniforme sobre o peso exato atribuído a elas, podendo variar de um tribunal para outro.</CardDescription>
                 </CardHeader>
                 <CardContent>
                     <RadioGroup 
-                        defaultValue="weight-one" 
+                        defaultValue={baseSentenceReducer.circumstancesWeight.name} 
                         onValueChange={(weight) => handleCircustancesWeight(weight)}
                     >
-                        <div className="flex items-center space-x-2">
-                            <RadioGroupItem value="weight-one" id="weight-one" />
-                            <Label htmlFor="weight-one" className="cursor-pointer">Peso 1/8</Label>
-                        </div>
-                        <div className="flex items-center space-x-2">
-                            <RadioGroupItem value="weight-two" id="weight-two" />
-                            <Label htmlFor="weight-two" className="cursor-pointer">Peso 1/6</Label>
-                        </div>
-                        <div className="flex items-center space-x-2">
-                            <RadioGroupItem value="weight-three" id="weight-three" />
-                            <Label htmlFor="weight-three" className="cursor-pointer">Peso Personalizado</Label>
-                        </div>
+                        {Object.entries(baseSentenceLabels.defaultWeights).map(([key, value]) => {
+                            if(key !== "label") {
+                                return (
+                                    <div key={key} className="flex items-center space-x-2">
+                                        <RadioGroupItem value={key} id={key} />
+                                        <Label htmlFor={key} className="cursor-pointer">{value}</Label>
+                                    </div>
+                                );
+                            }
+                            return null;
+                        })}
                     </RadioGroup>
                     {editCircumstanceWeight &&
                         <>
