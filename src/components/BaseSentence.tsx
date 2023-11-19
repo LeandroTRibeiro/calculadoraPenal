@@ -9,28 +9,15 @@ import {
   } from "@/components/ui/card";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Button } from "@/components/ui/button";
-import { useState } from "react";
 import { Switch } from "@/components/ui/switch";
 import { useAppSelector } from "@/hooks/useAppSelector";
 import { useDispatch } from "react-redux";
-import { CalculationTypesType, CircumstancesFractionType, CircumstancesOptionsWeightType, SentenceFieldsType } from "@/types/baseSentencetypes";
-import { updateCalculationType, setOptionCircumstancesWeight, updateMaxSentence, updateMinSentence } from "@/redux/reducers/baseSentenceReducer";
+import { CalculationTypesType, CircumstancesFractionType, CircumstancesOptionsWeightType, SentenceFieldsType, judicialCircumstancesType } from "@/types/baseSentencetypes";
+import { updateCalculationType, setOptionCircumstancesWeight, updateMaxSentence, updateMinSentence, updateCircumstancesWeight, setJudicialCircumstances } from "@/redux/reducers/baseSentenceReducer";
 import { baseSentenceLabels } from "@/locales/pt";
 
 type BaseSentenceProps = {
     handleNextStep: () => void;
-};
-
-type JudicialCircumstancesType = {
-    [key: string]: {
-        value: boolean;
-        label: string;
-    }
-};
-
-const weightMappings = {
-    weightOne: { numerator: 1, denominator: 8 },
-    weightTwo: { numerator: 1, denominator: 6 },
 };
 
 export const BaseSentence = (props: BaseSentenceProps) => {
@@ -38,40 +25,6 @@ export const BaseSentence = (props: BaseSentenceProps) => {
     const dispatch = useDispatch();
 
     const baseSentenceReducer = useAppSelector( state => state.baseSentenceReducer );
-    
-    const [editCircumstanceWeight, setEditCircumstanceWeight] = useState(false);
-
-    const [circumstancesWeight, setCircumstancesWeight] = useState({
-        numerator: 1,
-        denominator: 8
-    });
-
-    const [judicialCircumstances, setJudicialCircumstances] = useState<JudicialCircumstancesType>({
-        criminalRecord: { 
-            value: false, label: "Antecedentes" 
-        },
-        socialConduct: { 
-            value: false, label: "Conduta Social" 
-        },
-        personality: { 
-            value: false, label: "Personalidade" 
-        },
-        culpability: { 
-            value: false, label: "Culpabilidade" 
-        },
-        crimeMotive: { 
-            value: false, label: "Motivo do Crime" 
-        },
-        crimeCircumstances: { 
-            value: false, label: "Circunstâncias do Crime" 
-        },
-        crimeConsequences: { 
-            value: false, label: "Consequência do Crime" 
-        },
-        victimBehavior: { 
-            value: false, label: "Comportamento da Vítima" 
-        }
-    });
 
     const handleMinSentence = (e: React.ChangeEvent<HTMLInputElement>) => {
 
@@ -88,20 +41,13 @@ export const BaseSentence = (props: BaseSentenceProps) => {
     };
 
     const handleEditCircumstancesWeight = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setCircumstancesWeight(prevState => ({
-            ...prevState,
-            [e.target.name]: e.target.value
-        }));
+        const field = e.target.name as CircumstancesFractionType;
+        const value = +e.target.value;
+        dispatch(updateCircumstancesWeight({field, value}));
     };
 
-    const handleJudicialCircunstances = (key: string) => {
-        setJudicialCircumstances(prevState => ({
-            ...prevState,
-            [key]: {
-                ...prevState[key],
-                value: !prevState[key].value
-            }
-        }));
+    const handleJudicialCircunstances = (field: judicialCircumstancesType) => {
+        dispatch(setJudicialCircumstances({field}));
     };
 
     return (
@@ -237,20 +183,26 @@ export const BaseSentence = (props: BaseSentenceProps) => {
             </Card>
             <Card>
                 <CardHeader>
-                    <CardTitle className="text-base">Circunstâncias Judiciais Desfavoráveis</CardTitle>
+                    <CardTitle className="text-base">{baseSentenceLabels.judicialCircumstances.label}</CardTitle>
                     <CardDescription>As circunstâncias judiciais são elementos considerados pelos juízes no momento de definir a pena de um condenado em um processo penal. Elas são previstas na legislação penal e têm o objetivo de garantir que a pena seja individualizada, ou seja, adequada à gravidade do crime e às características pessoais do condenado.</CardDescription>
                 </CardHeader>
                 <CardContent className="grid grid-cols-2 gap-5">
-                    {Object.entries(judicialCircumstances).map(([key, circumstances]) => (
-                        <Label key={key} className="flex items-center gap-5 cursor-pointer">
-                            <Switch
-                                name={key}
-                                checked={circumstances.value} 
-                                onClick={() => handleJudicialCircunstances(key)}
-                            />
-                            {circumstances.label}
-                        </Label>
-                    ))}
+                    {Object.entries(baseSentenceLabels.judicialCircumstances).map(([key, circumstances]) => {
+                        if(key !== "label") {
+                            const circunstancesKey = key as judicialCircumstancesType;
+                            return (
+                                <Label key={key} className="flex items-center gap-5 cursor-pointer">
+                                    <Switch
+                                        name={key}
+                                        checked={baseSentenceReducer.judicialCircumstances[circunstancesKey]} 
+                                        onClick={() => handleJudicialCircunstances(circunstancesKey)}
+                                    />
+                                    {circumstances}
+                                </Label>
+                            )
+                        }
+                        return null;
+                    })}
                 </CardContent>
             </Card>
             <Button type="button" onClick={props.handleNextStep}>Proxima Fase</Button>

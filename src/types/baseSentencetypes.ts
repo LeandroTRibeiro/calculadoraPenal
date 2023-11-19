@@ -43,3 +43,5 @@ export type CalculationTypesType = "minimum" | "range" | "average";
 export type CircumstancesOptionsWeightType = "weightOne" | "weightTwo" | "weightThree";
 
 export type CircumstancesFractionType = "numerator" | "denominator";
+
+export type judicialCircumstancesType =  "criminalRecord" | "socialConduct" | "personality" | "culpability" | "crimeMotive" | "crimeCircumstances" | "crimeConsequences" | "victimBehavior";

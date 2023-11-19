@@ -1,4 +1,4 @@
-import { CalculationTypesType, CircumstancesOptionsWeightType, SentenceFieldsType } from "@/types/baseSentencetypes";
+import { CalculationTypesType, CircumstancesFractionType, CircumstancesOptionsWeightType, SentenceFieldsType, judicialCircumstancesType } from "@/types/baseSentencetypes";
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 export const slice = createSlice({
@@ -76,8 +76,14 @@ export const slice = createSlice({
                     break;
             };
         },
-        updateCircumstancesWeight: (state, action) => {
+        updateCircumstancesWeight: (state, action: PayloadAction<{field: CircumstancesFractionType, value: number}>) => {
+            const { field, value } = action.payload;
 
+            state.circumstancesWeight[field] = value;
+        },
+        setJudicialCircumstances: (state, action:PayloadAction<{field: judicialCircumstancesType}>) => {
+            const { field } = action.payload;
+            state.judicialCircumstances[field] = !state.judicialCircumstances[field];
         }
     }
 });
@@ -86,7 +92,9 @@ export const {
     updateMinSentence, 
     updateMaxSentence, 
     updateCalculationType, 
-    setOptionCircumstancesWeight, 
+    setOptionCircumstancesWeight,
+    updateCircumstancesWeight,
+    setJudicialCircumstances
 } = slice.actions;
 
 export default slice.reducer;
