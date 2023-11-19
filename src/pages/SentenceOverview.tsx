@@ -2,6 +2,7 @@ import { Footer } from "@/components/Footer";
 import { NavigationMenuHeader } from "@/components/NavigationMenuHeader";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCaption, TableCell, TableFooter, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { calculateResults } from "@/helpers/calculateResults";
 import { useAppSelector } from "@/hooks/useAppSelector";
 import { FilePdf, Pencil } from "@phosphor-icons/react";
 
@@ -10,6 +11,8 @@ export const SentenceOverview = () => {
     const baseSetenceReducer = useAppSelector( state => state.baseSentenceReducer );
     const intermediateSentenceReducer = useAppSelector( state => state.intermediateSentenceReducer);
     const definitiveSetenceReducer = useAppSelector( state => state.definitiveSentenceReducer);
+
+    console.log(calculateResults(baseSetenceReducer, intermediateSentenceReducer, definitiveSetenceReducer));
 
     return (
         <div className="w-screen h-screen">

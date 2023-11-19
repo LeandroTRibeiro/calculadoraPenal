@@ -33,7 +33,7 @@ export type BaseSentenceType = {
 };
 export type SentenceFieldsType = "years" | "months" | "days";
 
-export type CalculationTypesType = "minimum" | "range" | "average";
+export type CalculationTypesType = "minimum" | "average" | "maximum";
 
 export type CircumstancesOptionsWeightType = "weightOne" | "weightTwo" | "weightThree";
 
