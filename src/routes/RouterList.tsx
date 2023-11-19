@@ -1,10 +1,12 @@
 import { Calculator } from "@/pages/Calculator";
 import { Home } from "@/pages/Home";
+import { SentenceOverview } from "@/pages/SentenceOverview";
 import { useRoutes } from "react-router-dom";
 
 export const RouterList = () => {
     return useRoutes([
         {path: '/', element: <Home />},
         {path: "/calculator", element: <Calculator />},
+        {path: "/sentenceOverview", element: <SentenceOverview />}
     ]);
 };

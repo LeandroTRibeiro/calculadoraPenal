@@ -1,4 +1,4 @@
-import { AggravatingType, MitigatingType } from "@/types/intermediateSentenceTypes";
+import { AggravatingType, IntermediateSentenceType, MitigatingType } from "@/types/intermediateSentenceTypes";
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 const slice = createSlice({
@@ -17,7 +17,7 @@ const slice = createSlice({
             ignoranceOfLaw: false,
             agentFactors: false,
         }
-    },
+    } as IntermediateSentenceType,
     reducers: {
         setAggravating: (state, action: PayloadAction<{ field: AggravatingType }>) => {
             const { field } = action.payload;

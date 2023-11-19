@@ -1,4 +1,4 @@
-import { CalculationTypesType, CircumstancesFractionType, CircumstancesOptionsWeightType, SentenceFieldsType, judicialCircumstancesType } from "@/types/baseSentencetypes";
+import { BaseSentenceType, CalculationTypesType, CircumstancesFractionType, CircumstancesOptionsWeightType, SentenceFieldsType, judicialCircumstancesType } from "@/types/baseSentencetypes";
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 export const slice = createSlice({
@@ -41,7 +41,7 @@ export const slice = createSlice({
             crimeConsequences: false,
             victimBehavior: false
         }
-    },
+    } as BaseSentenceType,
     reducers: {
         updateMinSentence: (state, action: PayloadAction<{ field: SentenceFieldsType, value: number}>) => {
             const { field, value } = action.payload;

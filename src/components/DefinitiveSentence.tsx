@@ -21,8 +21,10 @@ import { Button } from "@/components/ui/button";
 import React, { useState, useEffect, useRef } from "react";
 import { Check, PencilLine, Plus, Trash } from "@phosphor-icons/react";
 import { useToast } from "@/components/ui/use-toast";
-import { describe } from "node:test";
-import { Description } from "@radix-ui/react-toast";
+import { useDispatch } from "react-redux";
+import { useAppSelector } from "@/hooks/useAppSelector";
+import { addCircumstance, removeCircumstance } from "@/redux/reducers/definitiveSentenceReducer";
+import { Link } from "react-router-dom";
 
 
 type CircumstancesType = {
@@ -36,11 +38,13 @@ type CircumstancesType = {
 
 export const DefinitiveSentence = () => {
 
-    const { toast } = useToast()
+    const { toast } = useToast();
+
+    const dispatch = useDispatch();
+
+    const definitiveSentenceReducer = useAppSelector( state => state.definitiveSentenceReducer );
 
     const inputRef = useRef<HTMLInputElement>(null);
-
-    const [modifyingCircumstancesList, setModifyingCircumstancesList] = useState<CircumstancesType[]>([]);
 
     const [addingCircunstance, setAddingCircunstance] = useState(false);
 
@@ -69,7 +73,7 @@ export const DefinitiveSentence = () => {
         }));
     };
 
-    const handleDeleteCircumstance = () => {
+    const handleClearCircumstance = () => {
         setCircumstance({
             name: "",
             weight: {
@@ -83,18 +87,22 @@ export const DefinitiveSentence = () => {
 
     const handleSubmitCircumstance = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        setModifyingCircumstancesList([...modifyingCircumstancesList, circumstance]);
+        dispatch(addCircumstance(circumstance));
         toast({
             title: "Nova circunstância adicionada!",
-            description: `${circumstance.name} - peso: ${circumstance.weight.denominator}/${circumstance.weight.numerator}.`    
+            description: `${circumstance.name} - peso: ${circumstance.weight.numerator}/${circumstance.weight.denominator}.`    
         });
-        handleDeleteCircumstance();
+        handleClearCircumstance();
     };  
 
     const handleEditCircunstance = (index: number) => {
-        setCircumstance(modifyingCircumstancesList[index]);
-        setModifyingCircumstancesList(prevList => prevList.filter((_, i) => i !== index));
+        setCircumstance(definitiveSentenceReducer[index]);
+        dispatch(removeCircumstance(index));
         setAddingCircunstance(true);
+    };
+
+    const handleRemoveCircumstance = (index: number) => {
+        dispatch(removeCircumstance(index));
     };
 
     return (
@@ -104,7 +112,7 @@ export const DefinitiveSentence = () => {
                     <CardTitle className="text-base">Adicione Majorantes ou Minorantes</CardTitle>
                 </CardHeader>
                 <CardContent className="flex flex-col gap-5">
-                    {modifyingCircumstancesList.map((item, index) => (
+                    {definitiveSentenceReducer.map((item, index) => (
                         <Card>
                             <CardHeader>
                                 <CardTitle className="text-base">{item.name}</CardTitle>
@@ -131,7 +139,7 @@ export const DefinitiveSentence = () => {
                                         type="button" 
                                         className="flex justify-center items-center cursor-pointer hover:text-red-500 transition-all ease-in-out duration-300 active:scale-50" 
                                         title="deletar"
-                                        onClick={() => setModifyingCircumstancesList(prevList => prevList.filter((_, i) => i !== index))}
+                                        onClick={() => handleRemoveCircumstance(index)}
                                     >
                                         <Trash size={25} />
                                     </button>
@@ -213,7 +221,7 @@ export const DefinitiveSentence = () => {
                                     <button
                                         type="button"
                                         className="flex-1 flex justify-center items-center cursor-pointer hover:text-red-500 transition-all ease-in-out duration-300 active:scale-50"
-                                        onClick={handleDeleteCircumstance}
+                                        onClick={handleClearCircumstance}
                                     >
                                         <Trash size={25} className="flex-1" />
                                     </button>
@@ -233,7 +241,9 @@ export const DefinitiveSentence = () => {
                     }
                 </CardContent>
             </Card>
-            <Button type="button">Finalizar Calculo</Button>
+            <Link to="/sentenceOverview">
+                <Button type="button">Finalizar Calculo</Button>
+            </Link>
         </form>
     );
 };
