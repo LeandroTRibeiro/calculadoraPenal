@@ -2,7 +2,7 @@ import { CalculationTypesType, CircumstancesFractionType, CircumstancesOptionsWe
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 export const slice = createSlice({
-    name: 'baseSentenceReducer',
+    name: "baseSentenceReducer",
     initialState: {
         minSentence: {
             years: 0,
