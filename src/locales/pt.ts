@@ -29,14 +29,34 @@ export const baseSentenceLabels = {
     },
     judicialCircumstances: {
         label: "Circunstâncias Judiciais Desfavoráveis",
-        criminalRecord: "Antecedentes",
-        socialConduct: "Conduta Social",
-        personality: "Personalidade",
-        culpability: "Culpabilidade",
-        crimeMotive: "Motivo do Crime",
-        crimeCircumstances: "Circunstâncias do Crime",
-        crimeConsequences: "Consequência do Crime",
-        victimBehavior: "Comportamento da Vítima"
+        criminalRecord: {
+            label: "Antecedentes",
+            description: " Registros de condenações anteriores definitivas. Uma condenação anterior pode ser considerada para aumentar a pena, desde que não tenha sido utilizada para caracterizar reincidência."
+        },
+        socialConduct: {
+            label: "Conduta Social",
+            description: "Relação do réu com o meio social em que vive, como família, trabalho e outros aspectos da vida social."
+        },
+        personality: {
+            label: "Personalidade",
+            description: "Características pessoais do réu que influenciam na prática do delito. o réu demonstra total indiferença ao dano ou perigo causado pela sua ação."
+        },
+        crimeMotive: {
+            label: "Motivo do Crime",
+            description: "Razões que levaram à prática do crime. Motivos fúteis ou torpes podem aumentar a pena."
+        },
+        crimeCircumstances: {
+            label: "Circunstâncias do Crime",
+            description: "Aspectos específicos de como o crime foi cometido. Por exemplo, a utilização de meios cruéis pode ser uma circunstância desfavorável."
+        },
+        crimeConsequences: {
+            label: "Consequência do Crime",
+            description: "Impacto do crime sobre a vítima e outros. Consequências especialmente graves podem aumentar a pena."
+        },
+        victimBehavior: {
+            label: "Comportamento da Vítima",
+            description: "Em algumas situações, a conduta da vítima pode ser considerada, embora seja um aspecto controverso e delicado na aplicação da lei."
+        }
     }
 };
 

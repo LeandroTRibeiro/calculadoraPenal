@@ -187,17 +187,17 @@ export const BaseSentence = (props: BaseSentenceProps) => {
                     <CardDescription>As circunstâncias judiciais são elementos considerados pelos juízes no momento de definir a pena de um condenado em um processo penal. Elas são previstas na legislação penal e têm o objetivo de garantir que a pena seja individualizada, ou seja, adequada à gravidade do crime e às características pessoais do condenado.</CardDescription>
                 </CardHeader>
                 <CardContent className="grid grid-cols-2 gap-5">
-                    {Object.entries(baseSentenceLabels.judicialCircumstances).map(([key, circumstances]) => {
-                        if(key !== "label") {
+                    {Object.entries(baseSentenceLabels.judicialCircumstances).map(([key, value]) => {
+                        if(key !== "label" && key !== "description" && typeof value === 'object' && value !== null) {
                             const circunstancesKey = key as judicialCircumstancesType;
                             return (
-                                <Label key={key} className="flex items-center gap-5 cursor-pointer">
+                                <Label key={key} className="flex items-center gap-5 cursor-pointer" title={value.description}>
                                     <Switch
                                         name={key}
                                         checked={baseSentenceReducer.judicialCircumstances[circunstancesKey]} 
                                         onClick={() => handleJudicialCircunstances(circunstancesKey)}
                                     />
-                                    {circumstances}
+                                    {value.label}
                                 </Label>
                             )
                         }
