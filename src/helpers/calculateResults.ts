@@ -21,11 +21,8 @@ export const calculateResults = (
             case "minimum":
                 initialBaseSentenceDays = minSentenceDays;
                 break;
-            case "average":
-                initialBaseSentenceDays = maxSentenceDays - minSentenceDays;
-                break;
             case "maximum":
-                initialBaseSentenceDays = (maxSentenceDays - minSentenceDays) + minSentenceDays;
+                initialBaseSentenceDays = maxSentenceDays - minSentenceDays;
                 break;
         };
 

@@ -142,7 +142,7 @@ export const BaseSentence = (props: BaseSentenceProps) => {
             <Card>
                 <CardHeader>
                     <CardTitle className="text-base">{baseSentenceLabels.calculationTypes.label}</CardTitle>
-                    <CardDescription>Alguns tribunais tendem a calcular a pena base usando a pena mínima, enquanto outros utilizam o intervalo entre a pena mínima e máxima. Há também aqueles que consideram o intervalo entre a pena mínima e a média entre elas. Essa abordagem pode variar de acordo com cada tribunal.</CardDescription>
+                    <CardDescription>Alguns tribunais tendem a calcular a pena base usando a pena mínima, enquanto outros utilizam o intervalo entre a pena mínima e máxima. Essa abordagem pode variar de acordo com cada tribunal.</CardDescription>
                 </CardHeader>
                 <CardContent>
                     <RadioGroup 

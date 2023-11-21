@@ -14,8 +14,7 @@ export const baseSentenceLabels = {
     calculationTypes: {
         label: "Tipo de Cálculo",
         minimum: 'Calcular a partir da pena mínima.',
-        average: 'Calcular a partir do intervalo entre a pena mínima e a máxima.',
-        maximum: 'Calcular a partir do intervalo entre a pena mínima e a média entre elas.'
+        maximum: 'Calcular a partir do intervalo entre a pena mínima e a máxima.'
     },
     circumstancesWeight: {
         label: "Peso das Circunstâncias Judiciais",

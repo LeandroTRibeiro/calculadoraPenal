@@ -25,7 +25,7 @@ export type BaseSentenceType = {
 };
 export type SentenceFieldsType = "years" | "months" | "days";
 
-export type CalculationTypesType = "minimum" | "average" | "maximum";
+export type CalculationTypesType = "minimum" | "maximum";
 
 export type CircumstancesOptionsWeightType = "weightOne" | "weightTwo" | "weightThree";
 
