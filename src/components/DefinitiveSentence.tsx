@@ -25,16 +25,8 @@ import { useDispatch } from "react-redux";
 import { useAppSelector } from "@/hooks/useAppSelector";
 import { addCircumstance, removeCircumstance } from "@/redux/reducers/definitiveSentenceReducer";
 import { Link } from "react-router-dom";
-
-
-type CircumstancesType = {
-    name: string,
-    weight: {
-        numerator: number,
-        denominator: number
-    },
-    description: string
-};
+import { CircumstancesFractionType } from "@/types/baseSentencetypes";
+import { CircumstancesType } from "@/types/definitiveSentenceType";
 
 export const DefinitiveSentence = () => {
 
@@ -87,6 +79,17 @@ export const DefinitiveSentence = () => {
 
     const handleSubmitCircumstance = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        if (
+            (circumstance.name !== "Minorante" && circumstance.name !== "Majorante") || 
+            circumstance.weight.numerator <= 0 || 
+            circumstance.weight.denominator <= 0
+        ) {
+            toast({
+                title: "Erro ao adicionar circunstância",
+                description: "Por favor, preencha todos os campos obrigatórios.",
+            });
+            return;
+        }
         dispatch(addCircumstance(circumstance));
         toast({
             title: "Nova circunstância adicionada!",
@@ -157,7 +160,7 @@ export const DefinitiveSentence = () => {
                                     <Label htmlFor="circunstances">Circunstancia:</Label>
                                     <Select
                                         value={circumstance.name ? circumstance.name : ""}
-                                        onValueChange={s => setCircumstance(prev => ({...prev, name: s}))}
+                                        onValueChange={s => setCircumstance(prev => ({...prev, name: s as "Minorante" | "Majorante"}))}
                                     >
                                         <SelectTrigger
                                             value={circumstance.name ? circumstance.name : ""}

@@ -51,6 +51,18 @@ export const slice = createSlice({
             const { field, value } = action.payload;
             state.maxSentence[field] = value;
         },
+        clearSentencesRange: (state) => {
+            const initialState = {
+                minSentence: { years: 0, months: 0, days: 0 }, 
+                maxSentence: { years: 0, months: 0, days: 0 },
+            };
+
+            return {
+                ...state, 
+                minSentence: {...initialState.minSentence},
+                maxSentence: {...initialState.maxSentence}
+            }
+        },
         updateCalculationType: (state, action: PayloadAction<CalculationTypesType>) => {
             state.calculationType = action.payload;
         },
@@ -91,6 +103,7 @@ export const slice = createSlice({
 export const { 
     updateMinSentence, 
     updateMaxSentence, 
+    clearSentencesRange,
     updateCalculationType, 
     setOptionCircumstancesWeight,
     updateCircumstancesWeight,

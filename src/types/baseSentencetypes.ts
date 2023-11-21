@@ -1,14 +1,6 @@
 export type BaseSentenceType = {
-    minSentence: {
-        years: number,
-        months: number,
-        days: number,
-    },
-    maxSentence: {
-        years: number,
-        months: number,
-        days: number,
-    },
+    minSentence: SentenceRangeType,
+    maxSentence: SentenceRangeType,
     calculationType: CalculationTypesType,
     circumstancesWeight: {
         name: string,
@@ -40,3 +32,9 @@ export type CircumstancesOptionsWeightType = "weightOne" | "weightTwo" | "weight
 export type CircumstancesFractionType = "numerator" | "denominator";
 
 export type judicialCircumstancesType =  "criminalRecord" | "socialConduct" | "personality" | "culpability" | "crimeMotive" | "crimeCircumstances" | "crimeConsequences" | "victimBehavior";
+
+export type SentenceRangeType = {
+    days: number,
+    months: number,
+    years: number
+}

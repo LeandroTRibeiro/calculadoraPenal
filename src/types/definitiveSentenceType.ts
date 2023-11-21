@@ -1,5 +1,5 @@
 export type CircumstancesType = {
-    name: string,
+    name: "Minorante" | "Majorante" | "",
     weight: {
         numerator: number,
         denominator: number

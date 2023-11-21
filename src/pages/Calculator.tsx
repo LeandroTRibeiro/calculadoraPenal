@@ -12,6 +12,9 @@ import {
 import { BaseSentence } from "@/components/BaseSentence";
 import { IntermediateSentence } from "@/components/IntermediateSentence";
 import { DefinitiveSentence } from "@/components/DefinitiveSentence";
+import { useAppSelector } from "@/hooks/useAppSelector";
+import { convertToTotalDays } from "@/helpers/calculateResults";
+import { useToast } from "@/components/ui/use-toast";
 
 const tabs = [
     {value: "first-step", label: "Pena Base"},
@@ -21,13 +24,38 @@ const tabs = [
 
 export const Calculator = () => {
 
+    const { toast } = useToast();
+
+    const baseSentenceReducer = useAppSelector( state => state.baseSentenceReducer );
+
     const [step, setStep] = useState(tabs[0].value);
 
     const handleNextStep = (index: number) => {
         setStep(tabs[index].value);
     };
 
-    const handleTabClick = (nextStep: string) => setStep(nextStep);
+    const handleTabClick = (nextStep: string) => {
+
+        const minDays = convertToTotalDays(baseSentenceReducer.minSentence);
+
+        const maxDays = convertToTotalDays(baseSentenceReducer.maxSentence);
+
+        if(!minDays || !maxDays) {
+            toast({
+                title: "Campos Incompletos",
+                description: "Por favor, preencha as penas mínima e máxima antes de prosseguir.",
+            });
+            return;
+        };
+        if(maxDays < minDays) {
+            toast({
+                title: "Erro na Definição da Pena",
+                description: "A pena máxima não pode ser menor que a pena mínima. Por favor, revise os valores inseridos.",
+            });
+            return;
+        };
+        setStep(nextStep);
+    };
 
     return (
         <div className="">

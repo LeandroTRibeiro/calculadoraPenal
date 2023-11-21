@@ -12,9 +12,12 @@ import { Button } from "@/components/ui/button";
 import { Switch } from "@/components/ui/switch";
 import { useAppSelector } from "@/hooks/useAppSelector";
 import { useDispatch } from "react-redux";
-import { CalculationTypesType, CircumstancesFractionType, CircumstancesOptionsWeightType, SentenceFieldsType, judicialCircumstancesType } from "@/types/baseSentencetypes";
-import { updateCalculationType, setOptionCircumstancesWeight, updateMaxSentence, updateMinSentence, updateCircumstancesWeight, setJudicialCircumstances } from "@/redux/reducers/baseSentenceReducer";
+import { CalculationTypesType, CircumstancesFractionType, CircumstancesOptionsWeightType, SentenceFieldsType, judicialCircumstancesType, SentenceRangeType } from "@/types/baseSentencetypes";
+import { updateCalculationType, setOptionCircumstancesWeight, updateMaxSentence, updateMinSentence, updateCircumstancesWeight, setJudicialCircumstances, clearSentencesRange } from "@/redux/reducers/baseSentenceReducer";
 import { baseSentenceLabels } from "@/locales/pt";
+import { convertToTotalDays } from "@/helpers/calculateResults";
+import { useToast } from "./ui/use-toast";
+import { useRef } from "react";
 
 type BaseSentenceProps = {
     handleNextStep: () => void;
@@ -22,7 +25,11 @@ type BaseSentenceProps = {
 
 export const BaseSentence = (props: BaseSentenceProps) => {
 
+    const { toast } = useToast();
+
     const dispatch = useDispatch();
+
+    const inputRef = useRef<HTMLInputElement>(null);
 
     const baseSentenceReducer = useAppSelector( state => state.baseSentenceReducer );
 
@@ -50,8 +57,29 @@ export const BaseSentence = (props: BaseSentenceProps) => {
         dispatch(setJudicialCircumstances({field}));
     };
 
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+
+        const minDays = convertToTotalDays(baseSentenceReducer.minSentence);
+
+        const maxDays = convertToTotalDays(baseSentenceReducer.maxSentence);
+
+        if(maxDays < minDays) {
+            toast({
+                title: "Erro na Definição da Pena",
+                description: "A pena máxima não pode ser menor que a pena mínima. Por favor, revise os valores inseridos.",
+            });
+            dispatch(clearSentencesRange());
+            inputRef.current?.focus();
+            return;
+        };
+        props.handleNextStep();
+    };
+
+    const isRequiredminMaxSentence = (setenceRange: SentenceRangeType) => setenceRange.days || setenceRange.months || setenceRange.years;
+
     return (
-        <form className="flex flex-col gap-5" onSubmit={ e => e.preventDefault() }>
+        <form className="flex flex-col gap-5" onSubmit={handleSubmit}>
             <div className="flex gap-2">
                 <Card className="flex-1">
                     <CardHeader>
@@ -68,9 +96,11 @@ export const BaseSentence = (props: BaseSentenceProps) => {
                                             id={key}
                                             name={key} 
                                             type="number" 
+                                            ref={key === "years" ? inputRef : null}
                                             className="" 
                                             placeholder={`Digite os ${value} da ${baseSentenceLabels.minSentence.label}`}
                                             value={baseSentenceReducer.minSentence[sentenceKey] ? baseSentenceReducer.minSentence[sentenceKey] : ""}
+                                            required={!isRequiredminMaxSentence(baseSentenceReducer.minSentence)}
                                             onChange={e => handleMinSentence(e)}
                                         /> 
                                     </Label>
@@ -99,6 +129,7 @@ export const BaseSentence = (props: BaseSentenceProps) => {
                                                 placeholder={`Digite os ${value} da ${baseSentenceLabels.maxSentence.label}`}
                                                 value={baseSentenceReducer.maxSentence[sentenceKey] ? baseSentenceReducer.maxSentence[sentenceKey] : ""}
                                                 onChange={e => handleMaxSentence(e)}
+                                                required={!isRequiredminMaxSentence(baseSentenceReducer.maxSentence)}
                                             /> 
                                         </Label>
                                     );
@@ -197,7 +228,14 @@ export const BaseSentence = (props: BaseSentenceProps) => {
                                         checked={baseSentenceReducer.judicialCircumstances[circunstancesKey]} 
                                         onClick={() => handleJudicialCircunstances(circunstancesKey)}
                                     />
-                                    {value.label}
+                                    <div>
+                                        {value.label}
+                                        <span  
+                                            className='text-red-600 font-bold text-lg'
+                                        >
+                                            *
+                                        </span>
+                                    </div>
                                 </Label>
                             )
                         }
@@ -205,7 +243,7 @@ export const BaseSentence = (props: BaseSentenceProps) => {
                     })}
                 </CardContent>
             </Card>
-            <Button type="button" onClick={props.handleNextStep}>Proxima Fase</Button>
+            <Button type="submit">Proxima Fase</Button>
         </form>
     );
 };

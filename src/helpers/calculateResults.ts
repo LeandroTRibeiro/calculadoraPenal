@@ -1,8 +1,8 @@
-import { BaseSentenceType } from "@/types/baseSentencetypes";
+import { BaseSentenceType, SentenceRangeType } from "@/types/baseSentencetypes";
 import { CircumstancesType } from "@/types/definitiveSentenceType";
 import { IntermediateSentenceType } from "@/types/intermediateSentenceTypes";
 
-const DAYS_PER_YEAR = 365;
+const DAYS_PER_YEAR = 360;
 const DAYS_PER_MONTH = 30;
 
 export const calculateResults = (
@@ -13,9 +13,9 @@ export const calculateResults = (
 
         let initialBaseSentenceDays;
 
-        const maxSentenceDays = convertToTotalDays(baseData.maxSentence.days, baseData.maxSentence.months, baseData.maxSentence.years);
+        const maxSentenceDays = convertToTotalDays(baseData.maxSentence);
 
-        const minSentenceDays = convertToTotalDays(baseData.minSentence.days, baseData.minSentence.months, baseData.minSentence.years);
+        const minSentenceDays = convertToTotalDays(baseData.minSentence);
 
         switch(baseData.calculationType) {
             case "minimum":
@@ -35,10 +35,25 @@ export const calculateResults = (
 
         const finalBaseSentenceObject = convertDaysToYearsMonthsDays(finalBaseSentenceDays);
 
-    return finalBaseSentenceObject;
+        const fractionAggravating = countTrueValues(intermediateData.aggravating) / 6;
+
+        const aggravatingDays = finalBaseSentenceDays * fractionAggravating;
+
+        const fractionMitigating = countTrueValues(intermediateData.mitigating) / 6;
+
+        const mitigatingDays = finalBaseSentenceDays * fractionMitigating;
+
+        const finalIntermediateSentenceDays =  finalBaseSentenceDays + aggravatingDays - mitigatingDays;
+
+        const finalIntemediateSentenceObject = convertDaysToYearsMonthsDays(finalIntermediateSentenceDays);
+
+    return { 
+        baseSentence: finalBaseSentenceObject, 
+        intermediateSentence: finalIntemediateSentenceObject
+    };
 };
 
-const convertToTotalDays = (days: number, months: number, years: number) => days + months * DAYS_PER_MONTH + years * DAYS_PER_YEAR;
+export const convertToTotalDays = (range: SentenceRangeType) => range.days + range.months * DAYS_PER_MONTH + range.years * DAYS_PER_YEAR;
 
 const countTrueValues = (objectOfBooleans: object) => Object.values(objectOfBooleans).filter(value => value === true). length;
 
