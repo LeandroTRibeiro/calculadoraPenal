@@ -11,26 +11,44 @@ export const calculateResults = (
     definitiveData: CircumstancesType[]
     ) => {
 
+        // Primeiro determino a setenca base
+
         let initialBaseSentenceDays;
+
+        let finalBaseSentenceDays;
 
         const maxSentenceDays = convertToTotalDays(baseData.maxSentence);
 
         const minSentenceDays = convertToTotalDays(baseData.minSentence);
+        
+        const fractionCircumstances = (baseData.circumstancesWeight.numerator * countTrueValues(baseData.judicialCircumstances)) / baseData.circumstancesWeight.denominator;
 
         switch(baseData.calculationType) {
             case "minimum":
                 initialBaseSentenceDays = minSentenceDays;
+                finalBaseSentenceDays = initialBaseSentenceDays * fractionCircumstances;
                 break;
             case "maximum":
                 initialBaseSentenceDays = maxSentenceDays - minSentenceDays;
+                finalBaseSentenceDays = minSentenceDays + (initialBaseSentenceDays * fractionCircumstances);
+                break;
+            default:
+                console.error("Tipo de cálculo desconhecido:", baseData.calculationType);
+                initialBaseSentenceDays = 0;
+                finalBaseSentenceDays = 0;
                 break;
         };
 
-        const fractionCircumstances = (baseData.circumstancesWeight.numerator * countTrueValues(baseData.judicialCircumstances)) / baseData.circumstancesWeight.denominator;
+        
+        if(finalBaseSentenceDays > maxSentenceDays) {
+            finalBaseSentenceDays = maxSentenceDays;
+        };
 
-        const finalBaseSentenceDays = minSentenceDays + (initialBaseSentenceDays * fractionCircumstances);
+        // Objeto final da sentenca base
 
         const finalBaseSentenceObject = convertDaysToYearsMonthsDays(finalBaseSentenceDays);
+
+        // Aqui comeco a determinar a setenca intermediaria
 
         const fractionAggravating = countTrueValues(intermediateData.aggravating) / 6;
 
@@ -40,13 +58,56 @@ export const calculateResults = (
 
         const mitigatingDays = finalBaseSentenceDays * fractionMitigating;
 
-        const finalIntermediateSentenceDays =  finalBaseSentenceDays + aggravatingDays - mitigatingDays;
+        let finalIntermediateSentenceDays =  finalBaseSentenceDays + aggravatingDays - mitigatingDays;
+
+        if(finalIntermediateSentenceDays > maxSentenceDays) {
+            finalIntermediateSentenceDays = maxSentenceDays;
+        };
+
+        if(finalIntermediateSentenceDays < minSentenceDays) {
+            finalIntermediateSentenceDays = minSentenceDays;
+        };
+
+        // Aqui crio o objeto com a sentenca intermediaria
 
         const finalIntemediateSentenceObject = convertDaysToYearsMonthsDays(finalIntermediateSentenceDays);
 
+        // Aqui comeco a determinar a sentenca definitiva
+
+        const majorantes = definitiveData.filter((item) => item.name === "Majorante");
+
+        let majorantesDays = 0;
+
+        for(let i = 0; i < majorantes.length; i++) {
+            majorantesDays = majorantesDays + ((majorantes[i].weight.numerator * finalIntermediateSentenceDays) / majorantes[i].weight.denominator);
+        };
+
+        const minorantes = definitiveData.filter((item) => item.name === "Minorante");
+
+        let minorantesDays = 0;
+
+        for(let i = 0; i < minorantes.length; i++) {
+            minorantesDays = minorantesDays + ((minorantes[i].weight.numerator * finalIntermediateSentenceDays) / minorantes[i].weight.denominator);
+        };
+
+        let finalDefinitiveSentenceDays = finalIntermediateSentenceDays + majorantesDays - minorantesDays;
+
+        if(finalDefinitiveSentenceDays > maxSentenceDays) {
+            finalDefinitiveSentenceDays = maxSentenceDays;
+        };
+
+        if(finalDefinitiveSentenceDays < minSentenceDays) {
+            finalDefinitiveSentenceDays = minSentenceDays;
+        };
+
+        // Aqui crio o objeto da sentenca definitiva
+
+        const finalDefinitiveSentenceObject = convertDaysToYearsMonthsDays(finalDefinitiveSentenceDays);
+
     return { 
         baseSentence: finalBaseSentenceObject, 
-        intermediateSentence: finalIntemediateSentenceObject
+        intermediateSentence: finalIntemediateSentenceObject,
+        definitiveSentence: finalDefinitiveSentenceObject
     };
 };
 
