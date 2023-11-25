@@ -26,7 +26,7 @@ export const calculateResults = (
         switch(baseData.calculationType) {
             case "minimum":
                 initialBaseSentenceDays = minSentenceDays;
-                finalBaseSentenceDays = initialBaseSentenceDays * fractionCircumstances;
+                finalBaseSentenceDays = minSentenceDays + (initialBaseSentenceDays * fractionCircumstances);
                 break;
             case "maximum":
                 initialBaseSentenceDays = maxSentenceDays - minSentenceDays;
@@ -43,6 +43,10 @@ export const calculateResults = (
         if(finalBaseSentenceDays > maxSentenceDays) {
             finalBaseSentenceDays = maxSentenceDays;
         };
+
+        if(finalBaseSentenceDays < minSentenceDays) {
+            finalBaseSentenceDays = minSentenceDays;
+        }
 
         // Objeto final da sentenca base
 
