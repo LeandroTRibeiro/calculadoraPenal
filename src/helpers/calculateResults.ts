@@ -117,9 +117,9 @@ export const calculateResults = (
 
 export const convertToTotalDays = (range: SentenceRangeType) => range.days + range.months * DAYS_PER_MONTH + range.years * DAYS_PER_YEAR;
 
-const countTrueValues = (objectOfBooleans: object) => Object.values(objectOfBooleans).filter(value => value === true). length;
+export const countTrueValues = (objectOfBooleans: object) => Object.values(objectOfBooleans).filter(value => value === true). length;
 
-const convertDaysToYearsMonthsDays = (totalDays: number) => {
+export const convertDaysToYearsMonthsDays = (totalDays: number) => {
 
     const years = Math.floor(totalDays / DAYS_PER_YEAR);
     const months = Math.floor((totalDays % DAYS_PER_YEAR) / DAYS_PER_MONTH);
