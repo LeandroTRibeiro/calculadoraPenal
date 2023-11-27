@@ -109,39 +109,39 @@ export const DefinitiveSentence = () => {
         <form className="flex flex-col gap-5" onSubmit={handleSubmitCircumstance}>
             <Card>
                 <CardHeader>
-                    <CardTitle className="text-base">Adicione Majorantes ou Minorantes</CardTitle>
+                    <CardTitle className="text-base mobile-g:text-sm">Adicione Majorantes ou Minorantes</CardTitle>
                 </CardHeader>
-                <CardContent className="flex flex-col gap-5">
+                <CardContent className="flex flex-col gap-5 mobile-gg:p-2">
                     {definitiveSentenceReducer.map((item, index) => (
                         <Card>
                             <CardHeader>
-                                <CardTitle className="text-base">{item.name}</CardTitle>
+                                <CardTitle className="text-base mobile-g:text-sm">{item.name}</CardTitle>
                             </CardHeader>
                             <CardContent>
-                                <dl className="grid grid-cols-8 gap-5">
-                                    <div className="col-span-5">
-                                        <dt className="font-semibold">Descrição:</dt>
-                                        <dd className="text-sm">{item.description}</dd>
+                                <dl className="grid grid-cols-8 mobile-g:grid-cols-4 gap-5">
+                                    <div className="col-span-5 mobile-g:col-span-4">
+                                        <dt className="font-semibold mobile-g:text-sm">Descrição:</dt>
+                                        <dd className="text-sm overflow-hidden mobile-g:text-xs">{item.description}</dd>
                                     </div>
-                                    <div>
-                                        <dt className="font-semibold">Peso:</dt>
-                                        <dd className="text-sm">{item.weight.numerator}/{item.weight.denominator}</dd>
+                                    <div className="mobile-g:col-span-2">
+                                        <dt className="font-semibold mobile-g:text-sm">Peso:</dt>
+                                        <dd className="text-sm mobile-g:text-xs">{item.weight.numerator}/{item.weight.denominator}</dd>
                                     </div>
                                     <button 
                                         type="button" 
-                                        className="flex justify-center items-center cursor-pointer hover:text-orange-600 transition-all ease-in-out duration-300 active:scale-50" 
+                                        className="flex justify-center items-center cursor-pointer hover:text-orange-600 transition-all ease-in-out duration-300 active:scale-50 text-2xl mobile-g:text-xl" 
                                         title="editar"
                                         onClick={() => handleEditCircunstance(index)}
                                     >
-                                        <PencilLine size={25} />
+                                        <PencilLine />
                                     </button>
                                     <button 
                                         type="button" 
-                                        className="flex justify-center items-center cursor-pointer hover:text-red-500 transition-all ease-in-out duration-300 active:scale-50" 
+                                        className="flex justify-center items-center cursor-pointer hover:text-red-500 transition-all ease-in-out duration-300 active:scale-50 text-2xl mobile-g:text-xl" 
                                         title="deletar"
                                         onClick={() => handleRemoveCircumstance(index)}
                                     >
-                                        <Trash size={25} />
+                                        <Trash />
                                     </button>
                                 </dl>
                             </CardContent>
@@ -150,10 +150,10 @@ export const DefinitiveSentence = () => {
                     {addingCircunstance &&
                         <Card>
                             <CardHeader>
-                                <CardTitle className="text-base">Nova Circunstancia</CardTitle>
+                                <CardTitle className="text-base mobile-g:text-sm">Nova Circunstancia</CardTitle>
                             </CardHeader> 
-                            <CardContent className="grid grid-cols-3 gap-x-10 gap-y-5">
-                                <div className="flex flex-col justify-center gap-2">
+                            <CardContent className="grid grid-cols-3 mobile-gg:grid-cols-4 gap-x-10 gap-y-5">
+                                <div className="flex flex-col justify-center gap-2 mobile-gg:col-span-4">
                                     <Label htmlFor="circunstances">Circunstancia:</Label>
                                     <Select
                                         value={circumstance.name ? circumstance.name : ""}
@@ -172,8 +172,8 @@ export const DefinitiveSentence = () => {
                                         </SelectContent>
                                     </Select>
                                 </div>
-                                <div className="flex flex-col gap-2">
-                                    <Label htmlFor="numerator" className="cursor-pointer">Numerador:</Label>
+                                <div className="flex flex-col gap-2 mobile-gg:col-span-2 mobile-g:col-span-4">
+                                    <Label htmlFor="numerator" className="cursor-pointer mobile-g:text-sm">Numerador:</Label>
                                     <Input 
                                         ref={inputRef}
                                         id="numerator"
@@ -187,7 +187,7 @@ export const DefinitiveSentence = () => {
                                         required
                                     />
                                 </div>
-                                <div className="flex flex-col gap-2">
+                                <div className="flex flex-col gap-2 mobile-gg:col-span-2 mobile-g:col-span-4">
                                     <Label htmlFor="denominator" className="cursor-pointer">Denominador:</Label>
                                     <Input 
                                         id="denominator" 
@@ -201,7 +201,7 @@ export const DefinitiveSentence = () => {
                                         required
                                     />   
                                 </div>
-                                <div className="col-span-3 flex flex-col gap-2">
+                                <div className="col-span-3 flex flex-col gap-2 mobile-gg:col-span-4">
                                     <Label htmlFor="description">Descrição:</Label>
                                     <Textarea 
                                         placeholder="Digite a descrição" 
@@ -211,7 +211,7 @@ export const DefinitiveSentence = () => {
                                         onChange={e => setCircumstance(prev => ({...prev, description: e.target.value}))}
                                     />
                                 </div>
-                                <div className="col-span-3 flex justify-center">
+                                <div className="col-span-3 flex justify-center mobile-gg:col-span-4">
                                     <button 
                                         type="submit"
                                         className="flex-1 flex justify-center items-center cursor-pointer hover:text-green-500 transition-all ease-in-out duration-300 active:scale-50"
@@ -232,7 +232,7 @@ export const DefinitiveSentence = () => {
                     {!addingCircunstance &&
                         <Button 
                             type="button" 
-                            className="gap-1 w-fit"
+                            className="gap-1 w-fit mobile-gg:w-full"
                             onClick={() => setAddingCircunstance(!addingCircunstance)}
                         >
                                 Adicionar
@@ -242,7 +242,7 @@ export const DefinitiveSentence = () => {
                 </CardContent>
             </Card>
             <Link to="/sentenceOverview">
-                <Button type="button">Finalizar Calculo</Button>
+                <Button type="button" className="w-full">Finalizar Calculo</Button>
             </Link>
         </form>
     );
