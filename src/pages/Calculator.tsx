@@ -1,20 +1,20 @@
 import { useState } from "react";
 import { Footer } from "../components/Footer";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "../components/ui/tabs";
 import {
     Card,
     CardContent,
     CardDescription,
     CardHeader,
     CardTitle,
-  } from "@/components/ui/card";
-import { BaseSentence } from "@/components/BaseSentence";
-import { IntermediateSentence } from "@/components/IntermediateSentence";
-import { DefinitiveSentence } from "@/components/DefinitiveSentence";
-import { useAppSelector } from "@/hooks/useAppSelector";
-import { convertToTotalDays } from "@/helpers/calculateResults";
-import { useToast } from "@/components/ui/use-toast";
-import { NavigationHeader } from "@/components/NavigationHeader";
+  } from "../components/ui/card";
+import { BaseSentence } from "../components/BaseSentence";
+import { IntermediateSentence } from "../components/IntermediateSentence";
+import { DefinitiveSentence } from "../components/DefinitiveSentence";
+import { useAppSelector } from "../hooks/useAppSelector";
+import { convertToTotalDays } from "../helpers/calculateResults";
+import { useToast } from "../components/ui/use-toast";
+import { NavigationHeader } from "../components/NavigationHeader";
 
 const tabs = [
     {value: "first-step", label: "Pena Base"},
