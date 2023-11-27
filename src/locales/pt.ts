@@ -126,3 +126,37 @@ export const intermediateSentenceLabels = {
         },
     }
 };
+
+export const sentenceOverview = {
+    title: "Resultado da Dosimetria da Pena",
+    description: "Abaixo, você encontrará o resultado detalhado da dosimetria da pena, apresentado em uma tabela clara e informativa. Esta tabela resume as informações calculadas, oferecendo uma visão completa e precisa da sentença determinada.",
+    dosemetryPhases: {
+        baseSentence: {
+            title: "Pena Base",
+            placeholder: "Adicione aqui uma descrição para esta fase",
+            results: {
+                years: "Anos",
+                months: "Meses",
+                days: "Dias"
+            }
+        },
+        intermediateSentence: {
+            title: "Pena Intermediária (Provisória)",
+            placeholder: "Adicione aqui uma descrição para esta fase",
+            results: {
+                years: "Anos",
+                months: "Meses",
+                days: "Dias"
+            }
+        },
+        definitiveSentence: {
+            title: "Pena Definitiva",
+            placeholder: "Adicione aqui uma descrição para esta fase",
+            results: {
+                years: "Anos",
+                months: "Meses",
+                days: "Dias"
+            }
+        },
+    }
+}

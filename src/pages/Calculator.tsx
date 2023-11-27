@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Footer } from "../components/Footer";
-import { NavigationMenuHeader } from "@/components/NavigationMenuHeader";
+import { NavigationMenuHeaderDesktop } from "@/components/NavigationMenuHeaderDesktop";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
     Card,
@@ -15,6 +15,7 @@ import { DefinitiveSentence } from "@/components/DefinitiveSentence";
 import { useAppSelector } from "@/hooks/useAppSelector";
 import { convertToTotalDays } from "@/helpers/calculateResults";
 import { useToast } from "@/components/ui/use-toast";
+import { NavigationHeader } from "@/components/NavigationHeader";
 
 const tabs = [
     {value: "first-step", label: "Pena Base"},
@@ -59,7 +60,7 @@ export const Calculator = () => {
 
     return (
         <div className="">
-            <NavigationMenuHeader />
+            <NavigationHeader />
             <main className="h-main flex justify-center px-10 py-2">
                 <Tabs value={step} className="w-full">
                     <TabsList className="grid w-full grid-cols-3">
