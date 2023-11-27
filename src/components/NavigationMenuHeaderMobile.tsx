@@ -25,7 +25,7 @@ export const NavigationMenuHeaderMobile = () => {
                             <SheetTitle>Menu</SheetTitle>
                         </SheetHeader>
                         <div className="flex flex-col">
-                            <Link to="/home">
+                            <Link to='/'>
                                 <Button variant="ghost" className="flex items-center gap-5">
                                     <House size={25} />
                                     Home

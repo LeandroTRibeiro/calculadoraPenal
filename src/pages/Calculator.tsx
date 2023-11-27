@@ -59,9 +59,9 @@ export const Calculator = () => {
     return (
         <div className="">
             <NavigationHeader />
-            <main className="h-main flex justify-center px-10 tablet-p:px-5 py-2">
+            <main className="h-main flex justify-center px-10 tablet-p:px-0 py-2">
                 <Tabs value={step} className="w-full">
-                    <TabsList className="grid w-full grid-cols-3">
+                    <TabsList className="grid w-full grid-cols-3 mobile-gg:hidden">
                         {tabs.map((tab) => (
                             <TabsTrigger 
                                 key={tab.value} 
@@ -81,7 +81,7 @@ export const Calculator = () => {
                                     <CardDescription className="tablet-p:text-xs">Primeiramente, identifique as penas mínima e máxima estipuladas no Código Penal para o crime específico. Lembre-se de verificar a presença de circunstâncias qualificadoras que possam modificar esses limites estabelecidos.</CardDescription>
                                 </CardHeader>
                             </div>
-                            <CardContent>
+                            <CardContent className="tablet-p:p-1">
                                 <BaseSentence handleNextStep={() => handleNextStep(1)} />
                             </CardContent>
                         </Card>
@@ -92,7 +92,7 @@ export const Calculator = () => {
                                 <CardTitle className="text-primary tablet-p:text-xl">Pena Intermediaria (Provisória)</CardTitle>
                                 <CardDescription className="tablet-p:text-xs">Nesta fase, a pena-base definida inicialmente é ajustada com base nas circunstâncias atenuantes e agravantes identificadas no contexto do delito cometido.</CardDescription>
                             </CardHeader>
-                            <CardContent>
+                            <CardContent className="tablet-p:p-1">
                                 <IntermediateSentence handleNextStep={() => handleNextStep(2)} />
                             </CardContent>
                         </Card>
