@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Footer } from "../components/Footer";
-import { NavigationMenuHeaderDesktop } from "@/components/NavigationMenuHeaderDesktop";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
     Card,

@@ -3,7 +3,6 @@ import { Input } from "@/components/ui/input";
 import {
     Card,
     CardContent,
-    CardDescription,
     CardHeader,
     CardTitle,
   } from "@/components/ui/card";
@@ -12,7 +11,6 @@ import {
     SelectContent,
     SelectGroup,
     SelectItem,
-    SelectLabel,
     SelectTrigger,
     SelectValue,
   } from "@/components/ui/select";
@@ -25,7 +23,6 @@ import { useDispatch } from "react-redux";
 import { useAppSelector } from "@/hooks/useAppSelector";
 import { addCircumstance, removeCircumstance } from "@/redux/reducers/definitiveSentenceReducer";
 import { Link } from "react-router-dom";
-import { CircumstancesFractionType } from "@/types/baseSentencetypes";
 import { CircumstancesType } from "@/types/definitiveSentenceType";
 
 export const DefinitiveSentence = () => {

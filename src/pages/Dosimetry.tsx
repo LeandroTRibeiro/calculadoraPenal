@@ -1,5 +1,4 @@
 import { Footer } from "@/components/Footer";
-import { NavigationMenuHeaderDesktop } from "@/components/NavigationMenuHeaderDesktop";
 import image from "../assets/images/desimetryImage.png";
 import { NavigationHeader } from "@/components/NavigationHeader";
 
