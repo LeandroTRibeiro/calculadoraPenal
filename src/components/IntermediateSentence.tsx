@@ -1,12 +1,12 @@
 import { Button } from "./ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card";
-import { Label } from "@/components/ui/label";
-import { Switch } from "@/components/ui/switch";
-import { intermediateSentenceLabels } from '@/locales/pt';
+import { Label } from "../components/ui/label";
+import { Switch } from "../components/ui/switch";
+import { intermediateSentenceLabels } from '../locales/pt';
 import { useDispatch } from 'react-redux';
-import { useAppSelector } from '@/hooks/useAppSelector';
-import { AggravatingType, MitigatingType } from '@/types/intermediateSentenceTypes';
-import { setAggravating, setMitigating } from '@/redux/reducers/intermediateSentenceReducer';
+import { useAppSelector } from '../hooks/useAppSelector';
+import { AggravatingType, MitigatingType } from '../types/intermediateSentenceTypes';
+import { setAggravating, setMitigating } from '../redux/reducers/intermediateSentenceReducer';
 
 type IntermediateSentenseProps = {
     handleNextStep: () => void;
@@ -27,13 +27,13 @@ export const IntermediateSentence = (props: IntermediateSentenseProps) => {
     };
 
     return (
-        <form className="flex flex-col gap-5" onSubmit={e => e.preventDefault()}>
+        <form className="flex flex-col gap-5 tablet-p:gap-3 mobile-gg:gap-1" onSubmit={e => e.preventDefault()}>
             <Card>
                 <CardHeader>
-                    <CardTitle className="text-base">{intermediateSentenceLabels.aggravating.label}</CardTitle>
-                    <CardDescription>{intermediateSentenceLabels.aggravating.description}</CardDescription>
+                    <CardTitle className="text-base tablet-p:text-sm">{intermediateSentenceLabels.aggravating.label}</CardTitle>
+                    <CardDescription className="tablet-p:text-xs">{intermediateSentenceLabels.aggravating.description}</CardDescription>
                 </CardHeader>
-                <CardContent className="grid grid-cols-2 gap-5">
+                <CardContent className="grid grid-cols-2 gap-5 tablet-p:grid-cols-1">
                     {Object.entries(intermediateSentenceLabels.aggravating).map(([key, value]) => {
                         if(key !== "label" && key !== "description" && typeof value === 'object' && value !== null) {
                             const aggravatingKey = key as AggravatingType;
@@ -65,10 +65,10 @@ export const IntermediateSentence = (props: IntermediateSentenseProps) => {
             </Card>
             <Card>
                 <CardHeader>
-                    <CardTitle className="text-base">{intermediateSentenceLabels.mitigating.label}</CardTitle>
-                    <CardDescription>{intermediateSentenceLabels.mitigating.description}</CardDescription>
+                    <CardTitle className="text-base tablet-p:text-sm">{intermediateSentenceLabels.mitigating.label}</CardTitle>
+                    <CardDescription className="tablet-p:text-xs">{intermediateSentenceLabels.mitigating.description}</CardDescription>
                 </CardHeader>
-                <CardContent className="grid grid-cols-2 gap-5">
+                <CardContent className="grid grid-cols-2 tablet-p:grid-cols-1 gap-5">
                     {Object.entries(intermediateSentenceLabels.mitigating).map(([key, value]) => {
                         if(key !== "label" && key !== "description" && typeof value === 'object' && value !== null) {
                             const mitigatingKey = key as MitigatingType;

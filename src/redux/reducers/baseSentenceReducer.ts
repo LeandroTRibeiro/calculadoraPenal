@@ -1,4 +1,4 @@
-import { BaseSentenceType, CalculationTypesType, CircumstancesFractionType, CircumstancesOptionsWeightType, SentenceFieldsType, judicialCircumstancesType } from "@/types/baseSentencetypes";
+import { BaseSentenceType, CalculationTypesType, CircumstancesFractionType, CircumstancesOptionsWeightType, SentenceFieldsType, judicialCircumstancesType } from "../../types/baseSentencetypes";
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 export const slice = createSlice({

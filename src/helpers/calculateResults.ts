@@ -1,7 +1,7 @@
-import { BaseSentenceType, SentenceRangeType } from "@/types/baseSentencetypes";
-import { CircumstancesType } from "@/types/definitiveSentenceType";
-import { IntermediateSentenceType } from "@/types/intermediateSentenceTypes";
-import { DosimetryResultsType } from "@/types/sentenceOverviewTypes";
+import { BaseSentenceType, SentenceRangeType } from "../types/baseSentencetypes";
+import { CircumstancesType } from "../types/definitiveSentenceType";
+import { IntermediateSentenceType } from "../types/intermediateSentenceTypes";
+import { DosimetryResultsType } from "../types/sentenceOverviewTypes";
 
 const DAYS_PER_YEAR = 360;
 const DAYS_PER_MONTH = 30;

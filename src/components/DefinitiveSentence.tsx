@@ -1,11 +1,11 @@
-import { Label } from "@/components/ui/label";
-import { Input } from "@/components/ui/input";
+import { Label } from "../components/ui/label";
+import { Input } from "../components/ui/input";
 import {
     Card,
     CardContent,
     CardHeader,
     CardTitle,
-  } from "@/components/ui/card";
+  } from "../components/ui/card";
   import {
     Select,
     SelectContent,
@@ -13,17 +13,17 @@ import {
     SelectItem,
     SelectTrigger,
     SelectValue,
-  } from "@/components/ui/select";
-import { Textarea } from "@/components/ui/textarea";
-import { Button } from "@/components/ui/button";
+  } from "../components/ui/select";
+import { Textarea } from "../components/ui/textarea";
+import { Button } from "../components/ui/button";
 import React, { useState, useEffect, useRef } from "react";
 import { Check, PencilLine, Plus, Trash } from "@phosphor-icons/react";
-import { useToast } from "@/components/ui/use-toast";
+import { useToast } from "../components/ui/use-toast";
 import { useDispatch } from "react-redux";
-import { useAppSelector } from "@/hooks/useAppSelector";
-import { addCircumstance, removeCircumstance } from "@/redux/reducers/definitiveSentenceReducer";
+import { useAppSelector } from "../hooks/useAppSelector";
+import { addCircumstance, removeCircumstance } from "../redux/reducers/definitiveSentenceReducer";
 import { Link } from "react-router-dom";
-import { CircumstancesType } from "@/types/definitiveSentenceType";
+import { CircumstancesType } from "../types/definitiveSentenceType";
 
 export const DefinitiveSentence = () => {
 

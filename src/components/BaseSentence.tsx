@@ -1,21 +1,21 @@
-import { Label } from "@/components/ui/label";
-import { Input } from "@/components/ui/input";
+import { Label } from "../components/ui/label";
+import { Input } from "../components/ui/input";
 import {
     Card,
     CardContent,
     CardDescription,
     CardHeader,
     CardTitle,
-  } from "@/components/ui/card";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { Button } from "@/components/ui/button";
-import { Switch } from "@/components/ui/switch";
-import { useAppSelector } from "@/hooks/useAppSelector";
+  } from "../components/ui/card";
+import { RadioGroup, RadioGroupItem } from "../components/ui/radio-group";
+import { Button } from "../components/ui/button";
+import { Switch } from "../components/ui/switch";
+import { useAppSelector } from "../hooks/useAppSelector";
 import { useDispatch } from "react-redux";
-import { CalculationTypesType, CircumstancesFractionType, CircumstancesOptionsWeightType, SentenceFieldsType, judicialCircumstancesType, SentenceRangeType } from "@/types/baseSentencetypes";
-import { updateCalculationType, setOptionCircumstancesWeight, updateMaxSentence, updateMinSentence, updateCircumstancesWeight, setJudicialCircumstances, clearSentencesRange } from "@/redux/reducers/baseSentenceReducer";
-import { baseSentenceLabels } from "@/locales/pt";
-import { convertToTotalDays } from "@/helpers/calculateResults";
+import { CalculationTypesType, CircumstancesFractionType, CircumstancesOptionsWeightType, SentenceFieldsType, judicialCircumstancesType, SentenceRangeType } from "../types/baseSentencetypes";
+import { updateCalculationType, setOptionCircumstancesWeight, updateMaxSentence, updateMinSentence, updateCircumstancesWeight, setJudicialCircumstances, clearSentencesRange } from "../redux/reducers/baseSentenceReducer";
+import { baseSentenceLabels } from "../locales/pt";
+import { convertToTotalDays } from "../helpers/calculateResults";
 import { useToast } from "./ui/use-toast";
 import { useRef } from "react";
 
@@ -79,11 +79,11 @@ export const BaseSentence = (props: BaseSentenceProps) => {
     const isRequiredminMaxSentence = (setenceRange: SentenceRangeType) => setenceRange.days || setenceRange.months || setenceRange.years;
 
     return (
-        <form className="flex flex-col gap-5" onSubmit={handleSubmit}>
-            <div className="flex gap-2">
+        <form className="flex flex-col gap-5 tablet-p:gap-3 mobile-gg:gap-1" onSubmit={handleSubmit}>
+            <div className="flex gap-2 tablet-p:flex-col mobile-gg:gap-1">
                 <Card className="flex-1">
                     <CardHeader>
-                        <CardTitle className="text-base">{baseSentenceLabels.minSentence.label}</CardTitle>
+                        <CardTitle className="text-base tablet-p:text-sm">{baseSentenceLabels.minSentence.label}</CardTitle>
                     </CardHeader>
                     <CardContent>
                         {Object.entries(baseSentenceLabels.minSentence).map(([key, value]) => {
@@ -112,7 +112,7 @@ export const BaseSentence = (props: BaseSentenceProps) => {
                 </Card>
                 <Card className="flex-1">
                     <CardHeader>
-                        <CardTitle className="text-base">{baseSentenceLabels.maxSentence.label}</CardTitle>
+                        <CardTitle className="text-base tablet-p:text-sm">{baseSentenceLabels.maxSentence.label}</CardTitle>
                     </CardHeader>
                     <CardContent>
                         {Object.entries(baseSentenceLabels.maxSentence).map(([key, value]) => {
@@ -141,8 +141,8 @@ export const BaseSentence = (props: BaseSentenceProps) => {
             </div>
             <Card>
                 <CardHeader>
-                    <CardTitle className="text-base">{baseSentenceLabels.calculationTypes.label}</CardTitle>
-                    <CardDescription>Alguns tribunais tendem a calcular a pena base usando a pena mínima, enquanto outros utilizam o intervalo entre a pena mínima e máxima. Essa abordagem pode variar de acordo com cada tribunal.</CardDescription>
+                    <CardTitle className="text-base tablet-p:text-sm">{baseSentenceLabels.calculationTypes.label}</CardTitle>
+                    <CardDescription className="tablet-p:text-xs">Alguns tribunais tendem a calcular a pena base usando a pena mínima, enquanto outros utilizam o intervalo entre a pena mínima e máxima. Essa abordagem pode variar de acordo com cada tribunal.</CardDescription>
                 </CardHeader>
                 <CardContent>
                     <RadioGroup 
@@ -166,8 +166,8 @@ export const BaseSentence = (props: BaseSentenceProps) => {
             </Card>
             <Card>
                 <CardHeader>
-                    <CardTitle className="text-base">{baseSentenceLabels.circumstancesWeight.label}</CardTitle>
-                    <CardDescription>O "peso das circunstâncias judiciais" refere-se à influência que elas possuem ao ampliar ou reduzir a pena base. No entanto, não há uma convenção uniforme sobre o peso exato atribuído a elas, podendo variar de um tribunal para outro.</CardDescription>
+                    <CardTitle className="text-base tablet-p:text-sm">{baseSentenceLabels.circumstancesWeight.label}</CardTitle>
+                    <CardDescription className="tablet-p:text-xs">O "peso das circunstâncias judiciais" refere-se à influência que elas possuem ao ampliar ou reduzir a pena base. No entanto, não há uma convenção uniforme sobre o peso exato atribuído a elas, podendo variar de um tribunal para outro.</CardDescription>
                 </CardHeader>
                 <CardContent>
                     <RadioGroup 
@@ -214,10 +214,10 @@ export const BaseSentence = (props: BaseSentenceProps) => {
             </Card>
             <Card>
                 <CardHeader>
-                    <CardTitle className="text-base">{baseSentenceLabels.judicialCircumstances.label}</CardTitle>
-                    <CardDescription>As circunstâncias judiciais são elementos considerados pelos juízes no momento de definir a pena de um condenado em um processo penal. Elas são previstas na legislação penal e têm o objetivo de garantir que a pena seja individualizada, ou seja, adequada à gravidade do crime e às características pessoais do condenado.</CardDescription>
+                    <CardTitle className="text-base tablet-p:text-sm">{baseSentenceLabels.judicialCircumstances.label}</CardTitle>
+                    <CardDescription className="tablet-p:text-xs">As circunstâncias judiciais são elementos considerados pelos juízes no momento de definir a pena de um condenado em um processo penal. Elas são previstas na legislação penal e têm o objetivo de garantir que a pena seja individualizada, ou seja, adequada à gravidade do crime e às características pessoais do condenado.</CardDescription>
                 </CardHeader>
-                <CardContent className="grid grid-cols-2 gap-5">
+                <CardContent className="grid grid-cols-2 tablet-p:grid-cols-1 gap-5 mobile-gg:gap-2">
                     {Object.entries(baseSentenceLabels.judicialCircumstances).map(([key, value]) => {
                         if(key !== "label" && key !== "description" && typeof value === 'object' && value !== null) {
                             const circunstancesKey = key as judicialCircumstancesType;

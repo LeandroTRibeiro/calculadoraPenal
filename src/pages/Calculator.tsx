@@ -59,14 +59,15 @@ export const Calculator = () => {
     return (
         <div className="">
             <NavigationHeader />
-            <main className="h-main flex justify-center px-10 py-2">
+            <main className="h-main flex justify-center px-10 tablet-p:px-0 py-2">
                 <Tabs value={step} className="w-full">
-                    <TabsList className="grid w-full grid-cols-3">
+                    <TabsList className="grid w-full grid-cols-3 mobile-gg:hidden">
                         {tabs.map((tab) => (
                             <TabsTrigger 
                                 key={tab.value} 
                                 value={tab.value}
                                 onClick={() => handleTabClick(tab.value)}
+                                className="tablet-p:text-xs"
                             >
                                 {tab.label}
                             </TabsTrigger>
@@ -76,11 +77,11 @@ export const Calculator = () => {
                         <Card>
                             <div className="flex">
                                 <CardHeader className="flex-1">
-                                    <CardTitle className="text-primary">Pena Base</CardTitle>
-                                    <CardDescription>Primeiramente, identifique as penas mínima e máxima estipuladas no Código Penal para o crime específico. Lembre-se de verificar a presença de circunstâncias qualificadoras que possam modificar esses limites estabelecidos.</CardDescription>
+                                    <CardTitle className="text-primary tablet-p:text-xl">Pena Base</CardTitle>
+                                    <CardDescription className="tablet-p:text-xs">Primeiramente, identifique as penas mínima e máxima estipuladas no Código Penal para o crime específico. Lembre-se de verificar a presença de circunstâncias qualificadoras que possam modificar esses limites estabelecidos.</CardDescription>
                                 </CardHeader>
                             </div>
-                            <CardContent>
+                            <CardContent className="tablet-p:p-1">
                                 <BaseSentence handleNextStep={() => handleNextStep(1)} />
                             </CardContent>
                         </Card>
@@ -88,10 +89,10 @@ export const Calculator = () => {
                     <TabsContent value="second-step">
                         <Card>
                             <CardHeader>
-                                <CardTitle className="text-primary">Pena Intermediaria (Provisória)</CardTitle>
-                                <CardDescription>Nesta fase, a pena-base definida inicialmente é ajustada com base nas circunstâncias atenuantes e agravantes identificadas no contexto do delito cometido.</CardDescription>
+                                <CardTitle className="text-primary tablet-p:text-xl">Pena Intermediaria (Provisória)</CardTitle>
+                                <CardDescription className="tablet-p:text-xs">Nesta fase, a pena-base definida inicialmente é ajustada com base nas circunstâncias atenuantes e agravantes identificadas no contexto do delito cometido.</CardDescription>
                             </CardHeader>
-                            <CardContent>
+                            <CardContent className="tablet-p:p-1">
                                 <IntermediateSentence handleNextStep={() => handleNextStep(2)} />
                             </CardContent>
                         </Card>
@@ -99,8 +100,8 @@ export const Calculator = () => {
                     <TabsContent value="third-step">
                         <Card>
                             <CardHeader>
-                                <CardTitle className="text-primary">Pena Definitiva</CardTitle>
-                                <CardDescription>Nesta etapa, a pena provisória, definida na segunda fase, é ajustada considerando as causas de aumento e diminuição previstas na legislação, resultando na pena final a ser aplicada ao réu.</CardDescription>
+                                <CardTitle className="text-primary tablet-p:text-xl">Pena Definitiva</CardTitle>
+                                <CardDescription className="tablet-p:text-xs">Nesta etapa, a pena provisória, definida na segunda fase, é ajustada considerando as causas de aumento e diminuição previstas na legislação, resultando na pena final a ser aplicada ao réu.</CardDescription>
                             </CardHeader>
                             <CardContent>
                                 <DefinitiveSentence />

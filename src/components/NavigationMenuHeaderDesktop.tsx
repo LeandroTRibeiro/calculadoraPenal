@@ -3,7 +3,7 @@ import {
     NavigationMenu,
     NavigationMenuItem,
     NavigationMenuList,
-  } from "@/components/ui/navigation-menu";
+  } from "../components/ui/navigation-menu";
 import { ModeToggle } from "./ui/mode-toggle";
 import { Link } from "react-router-dom";
 import { Button } from "./ui/button";
