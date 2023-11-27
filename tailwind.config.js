@@ -84,6 +84,9 @@ module.exports = {
         'mobile-g': {'max': '425px'},
         'mobile-m': {'max': '375px'},
         'mobile-p': {'max': '320px'}
+      },
+      flex: {
+        '2': '2 2 0%'
       }
     },
   },
