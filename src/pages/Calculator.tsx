@@ -103,7 +103,7 @@ export const Calculator = () => {
                                 <CardTitle className="text-primary tablet-p:text-xl">Pena Definitiva</CardTitle>
                                 <CardDescription className="tablet-p:text-xs">Nesta etapa, a pena provisória, definida na segunda fase, é ajustada considerando as causas de aumento e diminuição previstas na legislação, resultando na pena final a ser aplicada ao réu.</CardDescription>
                             </CardHeader>
-                            <CardContent>
+                            <CardContent className="tablet-p:p-1">
                                 <DefinitiveSentence />
                             </CardContent>
                         </Card>
