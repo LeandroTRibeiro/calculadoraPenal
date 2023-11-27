@@ -71,8 +71,20 @@ module.exports = {
         "accordion-up": "accordion-up 0.2s ease-out",
       },
       height: {
-        "main": "calc(100% - 5.25rem)"
+        "main": "calc(100% - 5.25rem)",
+        "main-mobile": "calc(100% - 4.25rem)"
       },
+      screens: {
+        'laptop-g': {'max': '1240px'},
+        'laptop-m': {'max': '1140px'},
+        'laptop-p': {'max': '1024px'},
+        'tablet-m': {'max': '868px'},
+        'tablet-p': {'max': '768px'},
+        'mobile-gg': {'max': '600px'},
+        'mobile-g': {'max': '425px'},
+        'mobile-m': {'max': '375px'},
+        'mobile-p': {'max': '320px'}
+      }
     },
   },
   plugins: [require("tailwindcss-animate")],
