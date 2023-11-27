@@ -1,4 +1,4 @@
-import { AlignRightSimple, BookOpenText, Calculator, Gavel, Scales } from "@phosphor-icons/react";
+import { AlignRightSimple, BookOpenText, Calculator, Gavel, House, Scales } from "@phosphor-icons/react";
 import { ModeToggle } from "./ui/mode-toggle";
 import { Link } from "react-router-dom";
 import { Button } from "./ui/button";
@@ -25,6 +25,12 @@ export const NavigationMenuHeaderMobile = () => {
                             <SheetTitle>Menu</SheetTitle>
                         </SheetHeader>
                         <div className="flex flex-col">
+                            <Link to="/home">
+                                <Button variant="ghost" className="flex items-center gap-5">
+                                    <House size={25} />
+                                    Home
+                                </Button>
+                            </Link>
                             <Link to="/about">
                                 <Button variant="ghost" className="flex items-center gap-5">
                                     <BookOpenText size={25} />

@@ -9,7 +9,7 @@ export const Home = () => {
         <div className="w-screen h-screen">
             <NavigationHeader />
             <BackgroundVideo />
-            <main className="h-main mobile-g:h-main-mobile flex items-center px-10 mobile-g:px-3 py-5 mobile-g:py-0 gap-5 mobile-g:gap-2 tablet-m:flex-col-reverse tablet-m:justify-center">
+            <main className="h-main mobile-g:h-main-mobile flex items-center px-10 mobile-g:px-3 py-5 mobile-g:py-0 gap-7 tablet-m:flex-col-reverse tablet-m:justify-center">
                 <div className="flex-1 flex flex-col gap-5 tablet-m:flex-initial">
                     <div className="flex flex-col gap-5 laptop-p:gap-3 mobile-g:gap-2 mobile-m:gap-1">
                         <h2 className="text-xl tablet-m:text-lg mobile-m:text-base font-semibold">Bem-Vindo(a) à Calculadora Penal!</h2>

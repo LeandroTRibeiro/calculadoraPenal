@@ -1,21 +1,21 @@
-import { Label } from "@/components/ui/label";
-import { Input } from "@/components/ui/input";
+import { Label } from "../components/ui/label";
+import { Input } from "../components/ui/input";
 import {
     Card,
     CardContent,
     CardDescription,
     CardHeader,
     CardTitle,
-  } from "@/components/ui/card";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { Button } from "@/components/ui/button";
-import { Switch } from "@/components/ui/switch";
-import { useAppSelector } from "@/hooks/useAppSelector";
+  } from "../components/ui/card";
+import { RadioGroup, RadioGroupItem } from "../components/ui/radio-group";
+import { Button } from "../components/ui/button";
+import { Switch } from "../components/ui/switch";
+import { useAppSelector } from "../hooks/useAppSelector";
 import { useDispatch } from "react-redux";
-import { CalculationTypesType, CircumstancesFractionType, CircumstancesOptionsWeightType, SentenceFieldsType, judicialCircumstancesType, SentenceRangeType } from "@/types/baseSentencetypes";
-import { updateCalculationType, setOptionCircumstancesWeight, updateMaxSentence, updateMinSentence, updateCircumstancesWeight, setJudicialCircumstances, clearSentencesRange } from "@/redux/reducers/baseSentenceReducer";
-import { baseSentenceLabels } from "@/locales/pt";
-import { convertToTotalDays } from "@/helpers/calculateResults";
+import { CalculationTypesType, CircumstancesFractionType, CircumstancesOptionsWeightType, SentenceFieldsType, judicialCircumstancesType, SentenceRangeType } from "../types/baseSentencetypes";
+import { updateCalculationType, setOptionCircumstancesWeight, updateMaxSentence, updateMinSentence, updateCircumstancesWeight, setJudicialCircumstances, clearSentencesRange } from "../redux/reducers/baseSentenceReducer";
+import { baseSentenceLabels } from "../locales/pt";
+import { convertToTotalDays } from "../helpers/calculateResults";
 import { useToast } from "./ui/use-toast";
 import { useRef } from "react";
 

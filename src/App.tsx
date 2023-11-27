@@ -1,5 +1,5 @@
 import { RouterList } from "./routes/RouterList";
-import { Toaster } from "@/components/ui/toaster"
+import { Toaster } from "./components/ui/toaster"
 
 const App = () => {
   return (

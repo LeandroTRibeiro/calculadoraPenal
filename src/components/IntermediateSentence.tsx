@@ -1,12 +1,12 @@
 import { Button } from "./ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card";
-import { Label } from "@/components/ui/label";
-import { Switch } from "@/components/ui/switch";
-import { intermediateSentenceLabels } from '@/locales/pt';
+import { Label } from "../components/ui/label";
+import { Switch } from "../components/ui/switch";
+import { intermediateSentenceLabels } from '../locales/pt';
 import { useDispatch } from 'react-redux';
-import { useAppSelector } from '@/hooks/useAppSelector';
-import { AggravatingType, MitigatingType } from '@/types/intermediateSentenceTypes';
-import { setAggravating, setMitigating } from '@/redux/reducers/intermediateSentenceReducer';
+import { useAppSelector } from '../hooks/useAppSelector';
+import { AggravatingType, MitigatingType } from '../types/intermediateSentenceTypes';
+import { setAggravating, setMitigating } from '../redux/reducers/intermediateSentenceReducer';
 
 type IntermediateSentenseProps = {
     handleNextStep: () => void;
