@@ -1,4 +1,4 @@
-import { AggravatingType, IntermediateSentenceType, MitigatingType } from "@/types/intermediateSentenceTypes";
+import { AggravatingType, IntermediateSentenceType, MitigatingType } from "../../types/intermediateSentenceTypes";
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 const slice = createSlice({

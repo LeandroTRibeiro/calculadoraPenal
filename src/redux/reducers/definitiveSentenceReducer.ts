@@ -1,4 +1,4 @@
-import { CircumstancesType } from "@/types/definitiveSentenceType";
+import { CircumstancesType } from "../../types/definitiveSentenceType";
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 export const slice = createSlice({

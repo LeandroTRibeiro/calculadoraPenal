@@ -1,8 +1,8 @@
-import { About } from "@/pages/About";
-import { Calculator } from "@/pages/Calculator";
-import { Dosimetry } from "@/pages/Dosimetry";
-import { Home } from "@/pages/Home";
-import { SentenceOverview } from "@/pages/SentenceOverview";
+import { About } from "../pages/About";
+import { Calculator } from "../pages/Calculator";
+import { Dosimetry } from "../pages/Dosimetry";
+import { Home } from "../pages/Home";
+import { SentenceOverview } from "../pages/SentenceOverview";
 import { useRoutes } from "react-router-dom";
 
 export const RouterList = () => {
