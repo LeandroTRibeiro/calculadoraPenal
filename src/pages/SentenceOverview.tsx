@@ -1,4 +1,3 @@
-import { Footer } from "../components/Footer";
 import { NavigationHeader } from "../components/NavigationHeader";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "../components/ui/table";
@@ -101,7 +100,6 @@ export const SentenceOverview = () => {
                     </CardContent>
                 </Card>
             </div>
-            <Footer />
         </div>
     );
 };

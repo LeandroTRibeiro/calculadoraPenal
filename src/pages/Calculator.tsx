@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { Footer } from "../components/Footer";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../components/ui/tabs";
 import {
     Card,
@@ -110,7 +109,6 @@ export const Calculator = () => {
                     </TabsContent>
                 </Tabs>
             </main>
-            <Footer />
         </div>
     );
 };

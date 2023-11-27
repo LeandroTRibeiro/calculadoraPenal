@@ -1,4 +1,3 @@
-import { Footer } from "../components/Footer";
 import image from "../assets/images/aboutImage2.png";
 import { NavigationHeader } from "../components/NavigationHeader";
 
@@ -15,7 +14,6 @@ export const About = () => {
                     <img src={image} alt="" />
                 </div>
             </main>
-            <Footer />
         </div>
     );
 };
