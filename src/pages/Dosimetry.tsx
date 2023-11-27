@@ -1,4 +1,3 @@
-import { Footer } from "../components/Footer";
 import image from "../assets/images/desimetryImage.png";
 import { NavigationHeader } from "../components/NavigationHeader";
 
@@ -14,7 +13,6 @@ export const Dosimetry = () => {
                 <img src={image} alt="books" className="max-w-md"/>
             </div>
         </main>
-        <Footer />
     </div>
     );
 };

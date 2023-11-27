@@ -1,5 +1,4 @@
 import { Button } from "../components/ui/button";
-import { Footer } from "../components/Footer";
 import { Link } from "react-router-dom";
 import { Scales } from "@phosphor-icons/react";
 import { BackgroundVideo } from "../components/BackgroundVideo";
@@ -34,7 +33,6 @@ export const Home = () => {
                     <span className="text-6xl tablet-m:text-4xl mobile-g:text-3xl font-extrabold">Penal</span>
                 </div>
             </main>
-            <Footer />
         </div>
     );
 };
