@@ -1,4 +1,3 @@
-import { NavigationMenuHeaderDesktop } from "@/components/NavigationMenuHeaderDesktop";
 import { Button } from "@/components/ui/button";
 import { Footer } from "@/components/Footer";
 import { Link } from "react-router-dom";

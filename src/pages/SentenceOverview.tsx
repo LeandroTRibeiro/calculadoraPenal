@@ -1,14 +1,12 @@
 import { Footer } from "@/components/Footer";
 import { NavigationHeader } from "@/components/NavigationHeader";
-import { NavigationMenuHeaderDesktop } from "@/components/NavigationMenuHeaderDesktop";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { calculateResults } from "@/helpers/calculateResults";
 import { useAppSelector } from "@/hooks/useAppSelector";
-import { baseSentenceLabels, intermediateSentenceLabels, sentenceOverview } from "@/locales/pt";
-import { SentenceFieldsType, judicialCircumstancesType } from "@/types/baseSentencetypes";
+import { sentenceOverview } from "@/locales/pt";
 import { DosimetryResultsType, dosimetryPhaseKeyType } from "@/types/sentenceOverviewTypes";
-import { Check, FilePdf, Pencil, X } from "@phosphor-icons/react";
+import { FilePdf, Pencil } from "@phosphor-icons/react";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
