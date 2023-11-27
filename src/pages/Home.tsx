@@ -1,9 +1,9 @@
-import { Button } from "@/components/ui/button";
-import { Footer } from "@/components/Footer";
+import { Button } from "../components/ui/button";
+import { Footer } from "../components/Footer";
 import { Link } from "react-router-dom";
 import { Scales } from "@phosphor-icons/react";
-import { BackgroundVideo } from "@/components/BackgroundVideo";
-import { NavigationHeader } from "@/components/NavigationHeader";
+import { BackgroundVideo } from "../components/BackgroundVideo";
+import { NavigationHeader } from "../components/NavigationHeader";
 
 export const Home = () => {
     return (

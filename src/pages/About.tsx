@@ -1,6 +1,6 @@
-import { Footer } from "@/components/Footer";
+import { Footer } from "../components/Footer";
 import image from "../assets/images/aboutImage2.png";
-import { NavigationHeader } from "@/components/NavigationHeader";
+import { NavigationHeader } from "../components/NavigationHeader";
 
 export const About = () => {
     return (
