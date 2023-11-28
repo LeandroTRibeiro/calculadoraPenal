@@ -51,10 +51,10 @@ export const SentenceOverview = () => {
     return (
         <div className="">
             <NavigationHeader />
-            <div className="flex justify-center px-10 py-5 gap-5">
+            <div className="flex justify-center px-10 mobile-gg:px-0 py-5 gap-5">
                 <Card>
                     <CardHeader>
-                        <CardTitle className="flex justify-between">
+                        <CardTitle className="flex justify-between mobile-gg:text-base">
                             {sentenceOverview.title}
                             <div className="flex gap-5">
                                 <Link 
@@ -66,17 +66,17 @@ export const SentenceOverview = () => {
                                 <FilePdf size={35} className="cursor-pointer" />
                             </div>
                         </CardTitle>
-                        <CardDescription>{sentenceOverview.description}</CardDescription>
+                        <CardDescription className="mobile-gg:text-xs">{sentenceOverview.description}</CardDescription>
                     </CardHeader>
                     <CardContent className="flex flex-col gap-5">
                         {Object.entries(sentenceOverview.dosemetryPhases).map(([key, value]) => {
                             const phaseKey = key as dosimetryPhaseKeyType;
                             return (
                                 <Card key={key}>
-                                    <CardHeader>
-                                        <CardTitle>{value.title}</CardTitle>
+                                    <CardHeader className="mobile-g:p-3">
+                                        <CardTitle className="mobile-gg:text-base text-center">{value.title}</CardTitle>
                                     </CardHeader>
-                                    <CardContent className="flex flex-col gap-5">
+                                    <CardContent className="flex flex-col mobile-g:p-3">
                                         <Table>
                                             <TableHeader>
                                                 <TableRow>
