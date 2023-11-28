@@ -93,7 +93,10 @@ export const Calculator = () => {
                                 <CardDescription className="tablet-p:text-xs">Nesta fase, a pena-base definida inicialmente é ajustada com base nas circunstâncias atenuantes e agravantes identificadas no contexto do delito cometido.</CardDescription>
                             </CardHeader>
                             <CardContent className="tablet-p:p-1">
-                                <IntermediateSentence handleNextStep={() => handleNextStep(2)} />
+                                <IntermediateSentence 
+                                    handleNextStep={() => handleNextStep(2)}
+                                    handleBeforeStep={() => handleNextStep(0)} 
+                                />
                             </CardContent>
                         </Card>
                     </TabsContent>
@@ -104,7 +107,9 @@ export const Calculator = () => {
                                 <CardDescription className="tablet-p:text-xs">Nesta etapa, a pena provisória, definida na segunda fase, é ajustada considerando as causas de aumento e diminuição previstas na legislação, resultando na pena final a ser aplicada ao réu.</CardDescription>
                             </CardHeader>
                             <CardContent className="tablet-p:p-1">
-                                <DefinitiveSentence />
+                                <DefinitiveSentence 
+                                    handleBeforeStep={() => handleNextStep(1)}
+                                />
                             </CardContent>
                         </Card>
                     </TabsContent>
