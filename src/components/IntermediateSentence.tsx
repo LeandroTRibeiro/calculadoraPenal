@@ -10,6 +10,7 @@ import { setAggravating, setMitigating } from '../redux/reducers/intermediateSen
 
 type IntermediateSentenseProps = {
     handleNextStep: () => void;
+    handleBeforeStep: () => void;
 };
 
 export const IntermediateSentence = (props: IntermediateSentenseProps) => {
@@ -98,7 +99,17 @@ export const IntermediateSentence = (props: IntermediateSentenseProps) => {
                     })}
                 </CardContent>
             </Card>
-            <Button type="button" onClick={props.handleNextStep}>Proxima Fase</Button>
+            <div className="flex gap-3">
+                <Button 
+                    type="button" 
+                    variant="outline"
+                    onClick={props.handleBeforeStep} 
+                    className="flex-1"
+                >
+                    Fase Anterior
+                </Button>
+                <Button type="button" onClick={props.handleNextStep} className="flex-1">Proxima Fase</Button>
+            </div>
         </form>
     );
 };

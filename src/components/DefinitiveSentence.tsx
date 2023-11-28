@@ -25,7 +25,11 @@ import { addCircumstance, removeCircumstance } from "../redux/reducers/definitiv
 import { Link } from "react-router-dom";
 import { CircumstancesType } from "../types/definitiveSentenceType";
 
-export const DefinitiveSentence = () => {
+type DefinitiveSentenceProps = {
+    handleBeforeStep: () => void;
+};
+
+export const DefinitiveSentence = (props: DefinitiveSentenceProps) => {
 
     const { toast } = useToast();
 
@@ -241,9 +245,19 @@ export const DefinitiveSentence = () => {
                     }
                 </CardContent>
             </Card>
-            <Link to="/sentenceOverview">
-                <Button type="button" className="w-full">Finalizar Calculo</Button>
-            </Link>
+            <div className="flex gap-3">
+                <Button 
+                    type="button" 
+                    variant="outline"
+                    className="flex-1" 
+                    onClick={props.handleBeforeStep}
+                >
+                    Fase Anterior
+                </Button>
+                <Link to="/sentenceOverview" className="flex-1">
+                    <Button type="button" className="w-full">Finalizar Calculo</Button>
+                </Link>
+            </div>
         </form>
     );
 };
