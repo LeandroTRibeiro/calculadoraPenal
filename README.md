@@ -6,6 +6,7 @@ Este projeto está em desenvolvimento como parte de um trabalho acadêmico para 
 ## Demo 🕹️ 
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/cf5f60f6-41f6-45f4-918d-c27e2f825e6e/deploy-status)](https://app.netlify.com/sites/dosimetriapenal/deploys)
+
 [Teste minha aplicação aqui!](https://dosimetriapenal.netlify.app/)
 
 ## :construction: Status do Projeto
