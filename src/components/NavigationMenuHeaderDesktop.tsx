@@ -32,7 +32,7 @@ export const NavigationMenuHeaderDesktop = () => {
                     </NavigationMenuItem>
                     <NavigationMenuItem>
                         <Link to="/dosimetria">
-                            <Button variant="ghost">Dosemetria Penal</Button>
+                            <Button variant="ghost">Dosimetria Penal</Button>
                         </Link>
                     </NavigationMenuItem>
                     <NavigationMenuItem>

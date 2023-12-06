@@ -23,7 +23,7 @@ export const Home = () => {
                             <Button>Calculadora</Button>
                         </Link>
                         <Link to="/dosimetria">
-                            <Button variant="outline">Dosemetria Penal</Button>
+                            <Button variant="outline">Dosimetria Penal</Button>
                         </Link>
                     </div>
                 </div>

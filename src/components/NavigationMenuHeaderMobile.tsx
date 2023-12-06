@@ -46,7 +46,7 @@ export const NavigationMenuHeaderMobile = () => {
                             <Link to="/dosimetria">
                                 <Button variant="ghost"  className="flex items-center gap-5">
                                     <Gavel size={25} />
-                                    Dosemetria Penal
+                                    Dosimetria Penal
                                 </Button>
                             </Link>
                         </div>
