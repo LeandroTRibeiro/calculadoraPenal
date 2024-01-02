@@ -4,7 +4,7 @@ import { BookOpenText } from "@phosphor-icons/react";
 
 export const About = () => {
     return (
-        <div className="w-screen h-full tablet-m:w-fit">
+        <div className="w-full h-full tablet-m:w-fit">
             <NavigationHeader />
             <main className="h-main tablet-m:h-fit px-10 mobile-g:px-3 py-5 flex justify-center items-center gap-5 tablet-m:flex-col tablet-m:gap-3">
                 <div className="flex-1 flex flex-col gap-5 tablet-m:gap-3">
