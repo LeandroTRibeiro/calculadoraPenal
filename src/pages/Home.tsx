@@ -6,7 +6,7 @@ import { NavigationHeader } from "../components/NavigationHeader";
 
 export const Home = () => {
     return (
-        <div className="w-screen h-screen">
+        <div className="w-screen h-full">
             <NavigationHeader />
             <BackgroundVideo />
             <main className="h-main mobile-g:h-main-mobile flex items-center px-10 mobile-g:px-3 tablet-m:flex-col-reverse tablet-m:justify-center">

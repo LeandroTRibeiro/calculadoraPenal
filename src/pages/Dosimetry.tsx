@@ -4,7 +4,7 @@ import { NavigationHeader } from "../components/NavigationHeader";
 
 export const Dosimetry = () => {
     return (
-        <div className="w-screen h-screen">
+        <div className="w-screen h-full">
         <NavigationHeader />
         <main className="h-main tablet-m:h-fit px-10 mobile-g:px-3 py-5 flex justify-center items-center gap-5 tablet-m:flex-col tablet-m:gap-3">
             <div className="flex-2 flex flex-col gap-5 tablet-m:gap-3">
