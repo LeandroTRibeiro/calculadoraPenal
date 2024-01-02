@@ -6,10 +6,10 @@ import { NavigationHeader } from "../components/NavigationHeader";
 
 export const Home = () => {
     return (
-        <div className="w-screen h-full">
+        <div className="w-full h-full">
             <NavigationHeader />
             <BackgroundVideo />
-            <main className="h-main mobile-g:h-main-mobile flex items-center px-10 mobile-g:px-3 tablet-m:flex-col-reverse tablet-m:justify-center">
+            <main className="mobile-g:h-main-mobile flex items-center gap-10 px-10 py-12 mobile-g:px-3 tablet-m:flex-col-reverse tablet-m:justify-center">
                 <div className="flex-1 mobile-g:flex-2 flex flex-col gap-5">
                     <div className="flex flex-col gap-5 laptop-p:gap-3 mobile-g:gap-2 mobile-m:gap-1">
                         <h2 className="text-xl tablet-m:text-lg mobile-m:text-sm font-semibold">Bem-Vindo(a) à Calculadora Penal!</h2>
